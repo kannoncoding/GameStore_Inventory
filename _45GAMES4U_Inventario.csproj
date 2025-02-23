@@ -46,8 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccesoDatos\AdministradorDatos.cs" />
+    <Compile Include="AccesoDatos\ClienteDatos.cs" />
+    <Compile Include="AccesoDatos\TiendaDatos.cs" />
     <Compile Include="AccesoDatos\TipoVideojuegoDatos.cs" />
     <Compile Include="AccesoDatos\VideojuegoDatos.cs" />
+    <Compile Include="AccesoDatos\VideojuegosXTiendaDatos.cs" />
     <Compile Include="Entidad\AdministradorEntidad.cs" />
     <Compile Include="Entidad\ClienteEntidad.cs" />
     <Compile Include="Entidad\PersonaEntidad.cs" />
@@ -61,6 +65,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogicaNegocio\AdministradorLogica.cs" />
+    <Compile Include="LogicaNegocio\ClienteLogica.cs" />
+    <Compile Include="LogicaNegocio\TiendaLogica.cs" />
+    <Compile Include="LogicaNegocio\TipoVideojuegoLogica.cs" />
+    <Compile Include="LogicaNegocio\VideojuegoLogica.cs" />
+    <Compile Include="LogicaNegocio\VideojuegosXTiendaLogica.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -87,7 +97,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="LogicaNegocio\" />
     <Folder Include="Presentacion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
