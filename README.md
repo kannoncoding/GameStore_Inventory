@@ -1,4 +1,4 @@
-# 45GAMES4U_Inventory
+# _45GAMES4U_Inventario
 
 Aplicación de escritorio para la gestión de inventario de videojuegos.
 

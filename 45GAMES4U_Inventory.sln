@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "45GAMES4U_Inventory", "45GAMES4U_Inventory.csproj", "{5B6D184B-09D9-4132-8CE3-8F8582BF4EA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_45GAMES4U_Inventario", "_45GAMES4U_Inventario.csproj", "{5B6D184B-09D9-4132-8CE3-8F8582BF4EA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
