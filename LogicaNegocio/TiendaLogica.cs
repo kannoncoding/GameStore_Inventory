@@ -18,27 +18,16 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
 {
     public class TiendaLogica
     {
-        private TiendaDatos tiendaDatos;
-        private AdministradorDatos administradorDatos;
-
-        // Constructor inicializa clases de acceso a datos
-        public TiendaLogica()
-        {
-            tiendaDatos = new TiendaDatos();
-            administradorDatos = new AdministradorDatos();
-        }
-
         // Método para agregar una nueva tienda con validaciones
         public string AgregarTienda(TiendaEntidad tienda)
         {
-            if (tiendaDatos.ExisteTienda(tienda.IdTienda))
+            // Validar duplicado por ID
+            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
             {
-                return "Ya existe una tienda registrada con este ID.";
-            }
-
-            if (!administradorDatos.ExisteAdministrador(tienda.IdAdministrador))
-            {
-                return "El administrador asignado a esta tienda no existe.";
+                if (DatosInventario.tiendas[i].IdTienda == tienda.IdTienda)
+                {
+                    return "Ya existe una tienda registrada con este ID.";
+                }
             }
 
             if (string.IsNullOrWhiteSpace(tienda.Nombre))
@@ -56,10 +45,10 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "El teléfono de la tienda es obligatorio.";
             }
 
-            bool agregado = tiendaDatos.AgregarTienda(tienda);
-
-            if (agregado)
+            if (DatosInventario.contadorTiendas < DatosInventario.tiendas.Length)
             {
+                DatosInventario.tiendas[DatosInventario.contadorTiendas] = tienda;
+                DatosInventario.contadorTiendas++;
                 return "La tienda se ha registrado correctamente.";
             }
             else
@@ -71,41 +60,44 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para eliminar una tienda por ID
         public string EliminarTienda(int idTienda)
         {
-            TiendaEntidad tienda = tiendaDatos.BuscarPorId(idTienda);
-
-            if (tienda == null)
+            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
             {
-                return "La tienda con el ID especificado no existe.";
-            }
+                if (DatosInventario.tiendas[i].IdTienda == idTienda)
+                {
+                    for (int j = i; j < DatosInventario.contadorTiendas - 1; j++)
+                    {
+                        DatosInventario.tiendas[j] = DatosInventario.tiendas[j + 1];
+                    }
 
-            bool eliminado = tiendaDatos.EliminarTienda(idTienda);
-
-            if (eliminado)
-            {
-                return "La tienda ha sido eliminada correctamente.";
+                    DatosInventario.tiendas[DatosInventario.contadorTiendas - 1] = null;
+                    DatosInventario.contadorTiendas--;
+                    return "La tienda ha sido eliminada correctamente.";
+                }
             }
-            else
-            {
-                return "Ocurrió un error al intentar eliminar la tienda.";
-            }
+            return "La tienda con el ID especificado no existe.";
         }
 
         // Método para buscar tienda por ID
         public TiendaEntidad BuscarTiendaPorId(int idTienda)
         {
-            return tiendaDatos.BuscarPorId(idTienda);
+            return DatosInventario.tiendas
+                .FirstOrDefault(t => t != null && t.IdTienda == idTienda);
         }
 
         // Método para obtener todas las tiendas registradas
         public TiendaEntidad[] ObtenerTodasTiendas()
         {
-            return tiendaDatos.ObtenerTodos();
+            TiendaEntidad[] lista = new TiendaEntidad[DatosInventario.contadorTiendas];
+            Array.Copy(DatosInventario.tiendas, lista, DatosInventario.contadorTiendas);
+            return lista;
         }
 
         // Método adicional para obtener tiendas por administrador específico
         public TiendaEntidad[] ObtenerTiendasPorAdministrador(int idAdministrador)
         {
-            return tiendaDatos.BuscarPorAdministrador(idAdministrador);
+            return DatosInventario.tiendas
+                .Where(t => t != null && t.IdAdministrador == idAdministrador)
+                .ToArray();
         }
     }
 }

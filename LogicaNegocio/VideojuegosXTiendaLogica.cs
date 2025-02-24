@@ -18,32 +18,30 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
 {
     public class VideojuegosXTiendaLogica
     {
-        private VideojuegosXTiendaDatos inventarioDatos;
-        private VideojuegoDatos videojuegoDatos;
-        private TiendaDatos tiendaDatos;
-
-        // Constructor inicializa clases de acceso a datos
-        public VideojuegosXTiendaLogica()
-        {
-            inventarioDatos = new VideojuegosXTiendaDatos();
-            videojuegoDatos = new VideojuegoDatos();
-            tiendaDatos = new TiendaDatos();
-        }
-
         // Método para agregar inventario con validaciones
         public string AgregarInventario(VideojuegosXTiendaEntidad inventario)
         {
-            if (inventarioDatos.ExisteInventario(inventario.IdTienda, inventario.IdVideojuego))
+            for (int i = 0; i < DatosInventario.contadorInventario; i++)
             {
-                return "Ya existe un registro de inventario para este videojuego en esta tienda.";
+                if (DatosInventario.inventario[i].IdTienda == inventario.IdTienda &&
+                    DatosInventario.inventario[i].IdVideojuego == inventario.IdVideojuego)
+                {
+                    return "Ya existe un registro de inventario para este videojuego en esta tienda.";
+                }
             }
 
-            if (!tiendaDatos.ExisteTienda(inventario.IdTienda))
+            bool tiendaExiste = DatosInventario.tiendas
+                .Any(t => t != null && t.IdTienda == inventario.IdTienda);
+
+            if (!tiendaExiste)
             {
                 return "La tienda especificada no existe.";
             }
 
-            if (!videojuegoDatos.ExisteVideojuego(inventario.IdVideojuego))
+            bool videojuegoExiste = DatosInventario.videojuegos
+                .Any(v => v != null && v.IdVideojuego == inventario.IdVideojuego);
+
+            if (!videojuegoExiste)
             {
                 return "El videojuego especificado no existe.";
             }
@@ -53,10 +51,10 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "El stock no puede ser negativo.";
             }
 
-            bool agregado = inventarioDatos.AgregarInventario(inventario);
-
-            if (agregado)
+            if (DatosInventario.contadorInventario < DatosInventario.inventario.Length)
             {
+                DatosInventario.inventario[DatosInventario.contadorInventario] = inventario;
+                DatosInventario.contadorInventario++;
                 return "El inventario se ha registrado correctamente.";
             }
             else
@@ -68,41 +66,45 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para eliminar un registro del inventario por tienda y videojuego
         public string EliminarVideojuegoXTienda(int idTienda, int idVideojuego)
         {
-            VideojuegosXTiendaEntidad inventario = inventarioDatos.BuscarInventario(idTienda, idVideojuego);
-
-            if (inventario == null)
+            for (int i = 0; i < DatosInventario.contadorInventario; i++)
             {
-                return "El inventario especificado no existe.";
-            }
+                if (DatosInventario.inventario[i].IdTienda == idTienda &&
+                    DatosInventario.inventario[i].IdVideojuego == idVideojuego)
+                {
+                    for (int j = i; j < DatosInventario.contadorInventario - 1; j++)
+                    {
+                        DatosInventario.inventario[j] = DatosInventario.inventario[j + 1];
+                    }
 
-            bool eliminado = inventarioDatos.EliminarInventario(idTienda, idVideojuego);
-
-            if (eliminado)
-            {
-                return "El registro del inventario ha sido eliminado correctamente.";
+                    DatosInventario.inventario[DatosInventario.contadorInventario - 1] = null;
+                    DatosInventario.contadorInventario--;
+                    return "El registro del inventario ha sido eliminado correctamente.";
+                }
             }
-            else
-            {
-                return "Ocurrió un error al intentar eliminar el registro del inventario.";
-            }
+            return "El inventario especificado no existe.";
         }
 
         // Método para buscar un inventario específico por tienda y videojuego
         public VideojuegosXTiendaEntidad BuscarInventario(int idTienda, int idVideojuego)
         {
-            return inventarioDatos.BuscarInventario(idTienda, idVideojuego);
+            return DatosInventario.inventario
+                .FirstOrDefault(i => i != null && i.IdTienda == idTienda && i.IdVideojuego == idVideojuego);
         }
 
         // Método para obtener todo el inventario registrado
         public VideojuegosXTiendaEntidad[] ObtenerTodoInventario()
         {
-            return inventarioDatos.ObtenerTodos();
+            VideojuegosXTiendaEntidad[] lista = new VideojuegosXTiendaEntidad[DatosInventario.contadorInventario];
+            Array.Copy(DatosInventario.inventario, lista, DatosInventario.contadorInventario);
+            return lista;
         }
 
         // Método adicional para obtener el inventario específico de una tienda
         public VideojuegosXTiendaEntidad[] ObtenerInventarioPorTienda(int idTienda)
         {
-            return inventarioDatos.ObtenerInventarioPorTienda(idTienda);
+            return DatosInventario.inventario
+                .Where(i => i != null && i.IdTienda == idTienda)
+                .ToArray();
         }
     }
 }

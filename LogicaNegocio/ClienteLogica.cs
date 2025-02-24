@@ -18,25 +18,21 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
 {
     public class ClienteLogica
     {
-        private ClienteDatos clienteDatos;
-
-        // Constructor inicializa la clase de acceso a datos
-        public ClienteLogica()
-        {
-            clienteDatos = new ClienteDatos();
-        }
-
         // Método para agregar un nuevo cliente con validaciones
         public string AgregarCliente(ClienteEntidad cliente)
         {
-            if (clienteDatos.ExisteCliente(cliente.IdCliente))
+            // Validar duplicado por ID o Identificación
+            for (int i = 0; i < DatosInventario.contadorClientes; i++)
             {
-                return "Ya existe un cliente registrado con este ID.";
-            }
+                if (DatosInventario.clientes[i].IdCliente == cliente.IdCliente)
+                {
+                    return "Ya existe un cliente registrado con este ID.";
+                }
 
-            if (clienteDatos.BuscarPorIdentificacion(cliente.Identificacion) != null)
-            {
-                return "Ya existe un cliente registrado con esta identificación.";
+                if (DatosInventario.clientes[i].Identificacion == cliente.Identificacion)
+                {
+                    return "Ya existe un cliente registrado con esta identificación.";
+                }
             }
 
             if (string.IsNullOrWhiteSpace(cliente.Identificacion))
@@ -56,10 +52,10 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
 
             cliente.FechaRegistro = DateTime.Now;
 
-            bool agregado = clienteDatos.AgregarCliente(cliente);
-
-            if (agregado)
+            if (DatosInventario.contadorClientes < DatosInventario.clientes.Length)
             {
+                DatosInventario.clientes[DatosInventario.contadorClientes] = cliente;
+                DatosInventario.contadorClientes++;
                 return "El cliente se ha registrado correctamente.";
             }
             else
@@ -71,41 +67,43 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para eliminar cliente por ID
         public string EliminarCliente(int idCliente)
         {
-            ClienteEntidad cliente = clienteDatos.BuscarPorId(idCliente);
-
-            if (cliente == null)
+            for (int i = 0; i < DatosInventario.contadorClientes; i++)
             {
-                return "El cliente con el ID especificado no existe.";
-            }
+                if (DatosInventario.clientes[i].IdCliente == idCliente)
+                {
+                    for (int j = i; j < DatosInventario.contadorClientes - 1; j++)
+                    {
+                        DatosInventario.clientes[j] = DatosInventario.clientes[j + 1];
+                    }
 
-            bool eliminado = clienteDatos.EliminarCliente(idCliente);
-
-            if (eliminado)
-            {
-                return "El cliente ha sido eliminado correctamente.";
+                    DatosInventario.clientes[DatosInventario.contadorClientes - 1] = null;
+                    DatosInventario.contadorClientes--;
+                    return "El cliente ha sido eliminado correctamente.";
+                }
             }
-            else
-            {
-                return "Ocurrió un error al intentar eliminar el cliente.";
-            }
+            return "El cliente con el ID especificado no existe.";
         }
 
         // Método para buscar cliente por ID
         public ClienteEntidad BuscarClientePorId(int idCliente)
         {
-            return clienteDatos.BuscarPorId(idCliente);
+            return DatosInventario.clientes
+                .FirstOrDefault(c => c != null && c.IdCliente == idCliente);
         }
 
         // Método para obtener todos los clientes registrados
         public ClienteEntidad[] ObtenerTodosClientes()
         {
-            return clienteDatos.ObtenerTodos();
+            ClienteEntidad[] lista = new ClienteEntidad[DatosInventario.contadorClientes];
+            Array.Copy(DatosInventario.clientes, lista, DatosInventario.contadorClientes);
+            return lista;
         }
 
         // Método adicional para buscar clientes por identificación personal
         public ClienteEntidad BuscarClientePorIdentificacion(string identificacion)
         {
-            return clienteDatos.BuscarPorIdentificacion(identificacion);
+            return DatosInventario.clientes
+                .FirstOrDefault(c => c != null && c.Identificacion == identificacion);
         }
     }
 }

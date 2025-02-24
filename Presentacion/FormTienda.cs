@@ -60,7 +60,28 @@ namespace _45GAMES4U_Inventario.Presentacion
         {
             try
             {
-                dgvTiendas.DataSource = tiendaLogica.ObtenerTodasTiendas();
+                TiendaEntidad[] tiendas = tiendaLogica.ObtenerTodasTiendas();
+
+                // Limpiar las filas existentes del DataGridView
+                dgvTiendas.Rows.Clear();
+                dgvTiendas.Columns.Clear();
+
+                // Añadir columnas (solo la primera vez)
+                dgvTiendas.Columns.Add("IdTienda", "ID Tienda");
+                dgvTiendas.Columns.Add("Nombre", "Nombre");
+                dgvTiendas.Columns.Add("Direccion", "Dirección");
+                dgvTiendas.Columns.Add("Telefono", "Teléfono");
+
+                // Añadir filas al DataGridView
+                foreach (var tienda in tiendas)
+                {
+                    if (tienda != null)
+                    {
+                        dgvTiendas.Rows.Add(tienda.IdTienda, tienda.Nombre, tienda.Direccion, tienda.Telefono);
+                    }
+                }
+
+                dgvTiendas.AutoResizeColumns();
             }
             catch (Exception ex)
             {
