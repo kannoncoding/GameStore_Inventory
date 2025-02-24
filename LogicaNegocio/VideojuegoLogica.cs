@@ -18,27 +18,29 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
 {
     public class VideojuegoLogica
     {
-        private VideojuegoDatos videojuegoDatos;
-        private TipoVideojuegoDatos tipoVideojuegoDatos;
-
-        // Constructor inicializa clases de acceso a datos
-        public VideojuegoLogica()
-        {
-            videojuegoDatos = new VideojuegoDatos();
-            tipoVideojuegoDatos = new TipoVideojuegoDatos();
-        }
-
         // Método para agregar un nuevo videojuego con validaciones
         public string AgregarVideojuego(VideojuegoEntidad videojuego)
         {
             // Validar duplicado
-            if (videojuegoDatos.ExisteVideojuego(videojuego.IdVideojuego))
+            for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
             {
-                return "Ya existe un videojuego registrado con este ID.";
+                if (DatosInventario.videojuegos[i].IdVideojuego == videojuego.IdVideojuego)
+                {
+                    return "Ya existe un videojuego registrado con este ID.";
+                }
             }
 
             // Validar existencia del tipo de videojuego
-            if (!tipoVideojuegoDatos.ExisteTipo(videojuego.IdTipoVideojuego))
+            bool tipoExiste = false;
+            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
+            {
+                if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == videojuego.IdTipoVideojuego)
+                {
+                    tipoExiste = true;
+                    break;
+                }
+            }
+            if (!tipoExiste)
             {
                 return "El tipo de videojuego seleccionado no existe.";
             }
@@ -64,10 +66,10 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "Debe indicar la clasificación por edad del videojuego.";
             }
 
-            bool agregado = videojuegoDatos.AgregarVideojuego(videojuego);
-
-            if (agregado)
+            if (DatosInventario.contadorVideojuegos < DatosInventario.videojuegos.Length)
             {
+                DatosInventario.videojuegos[DatosInventario.contadorVideojuegos] = videojuego;
+                DatosInventario.contadorVideojuegos++;
                 return "El videojuego se ha registrado correctamente.";
             }
             else
@@ -79,19 +81,30 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para buscar videojuego por ID
         public VideojuegoEntidad BuscarVideojuegoPorId(int id)
         {
-            return videojuegoDatos.BuscarPorId(id);
+            for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
+            {
+                if (DatosInventario.videojuegos[i].IdVideojuego == id)
+                    return DatosInventario.videojuegos[i];
+            }
+            return null;
         }
 
         // Método para obtener todos los videojuegos registrados
         public VideojuegoEntidad[] ObtenerTodosVideojuegos()
         {
-            return videojuegoDatos.ObtenerTodos();
+            VideojuegoEntidad[] lista = new VideojuegoEntidad[DatosInventario.contadorVideojuegos];
+            Array.Copy(DatosInventario.videojuegos, lista, DatosInventario.contadorVideojuegos);
+            return lista;
         }
 
         // Método adicional para obtener videojuegos por tipo específico
         public VideojuegoEntidad[] ObtenerVideojuegosPorTipo(int idTipo)
         {
-            return videojuegoDatos.BuscarPorTipo(idTipo);
+            VideojuegoEntidad[] resultado = DatosInventario.videojuegos
+                .Where(v => v != null && v.IdTipoVideojuego == idTipo)
+                .ToArray();
+
+            return resultado;
         }
     }
 }

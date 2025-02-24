@@ -63,10 +63,16 @@ namespace _45GAMES4U_Inventario.Presentacion
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult respuesta = MessageBox.Show("¿Desea salir del sistema?", "Salir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult respuesta = MessageBox.Show(
+                "¿Está seguro que desea salir del sistema?",
+                "Confirmar salida",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
 
             if (respuesta == DialogResult.Yes)
+            {
                 Application.Exit();
+            }
         }
 
         private void FormMenuPrincipal_Load(object sender, EventArgs e)

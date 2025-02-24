@@ -18,33 +18,28 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
 {
     public class TipoVideojuegoLogica
     {
-        private TipoVideojuegoDatos tipoVideojuegoDatos;
-
-        // Constructor inicializa la clase de acceso a datos
-        public TipoVideojuegoLogica()
-        {
-            tipoVideojuegoDatos = new TipoVideojuegoDatos();
-        }
-
         // Método para agregar un nuevo tipo de videojuego con validaciones
         public string AgregarTipoVideojuego(TipoVideojuegoEntidad tipo)
         {
-            // Validar que no exista un tipo con el mismo ID
-            if (tipoVideojuegoDatos.ExisteTipo(tipo.IdTipoVideojuego))
+            // Validar duplicados
+            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
             {
-                return "Ya existe un tipo de videojuego con este ID.";
+                if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == tipo.IdTipoVideojuego)
+                {
+                    return "Ya existe un tipo de videojuego con este ID.";
+                }
             }
 
             // Validación que el nombre no esté vacío
-            if (string.IsNullOrWhiteSpace(tipo.Nombre))
+            if (string.IsNullOrWhiteSpace(tipo.Descripcion))
             {
-                return "El nombre del tipo de videojuego no puede estar vacío.";
+                return "La descripción del tipo de videojuego no puede estar vacía.";
             }
 
-            bool agregado = tipoVideojuegoDatos.AgregarTipoVideojuego(tipo);
-
-            if (agregado)
+            if (DatosInventario.contadorTiposVideojuegos < DatosInventario.tiposVideojuegos.Length)
             {
+                DatosInventario.tiposVideojuegos[DatosInventario.contadorTiposVideojuegos] = tipo;
+                DatosInventario.contadorTiposVideojuegos++;
                 return "El tipo de videojuego se ha registrado correctamente.";
             }
             else
@@ -56,13 +51,22 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para buscar un tipo por ID
         public TipoVideojuegoEntidad BuscarTipoPorId(int id)
         {
-            return tipoVideojuegoDatos.BuscarPorId(id);
+            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
+            {
+                if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == id)
+                {
+                    return DatosInventario.tiposVideojuegos[i];
+                }
+            }
+            return null;
         }
 
         // Método para obtener todos los tipos
         public TipoVideojuegoEntidad[] ObtenerTodosTipos()
         {
-            return tipoVideojuegoDatos.ObtenerTodos();
+            TipoVideojuegoEntidad[] tipos = new TipoVideojuegoEntidad[DatosInventario.contadorTiposVideojuegos];
+            Array.Copy(DatosInventario.tiposVideojuegos, tipos, DatosInventario.contadorTiposVideojuegos);
+            return tipos;
         }
     }
 }

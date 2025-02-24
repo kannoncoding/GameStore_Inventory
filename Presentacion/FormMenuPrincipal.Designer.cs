@@ -51,72 +51,77 @@
             // 
             this.btnTipoVideojuego.Location = new System.Drawing.Point(13, 30);
             this.btnTipoVideojuego.Name = "btnTipoVideojuego";
-            this.btnTipoVideojuego.Size = new System.Drawing.Size(285, 23);
+            this.btnTipoVideojuego.Size = new System.Drawing.Size(372, 23);
             this.btnTipoVideojuego.TabIndex = 1;
             this.btnTipoVideojuego.Text = "Gestionar Tipos de Videojuegos\n";
             this.btnTipoVideojuego.UseVisualStyleBackColor = true;
+            this.btnTipoVideojuego.Click += new System.EventHandler(this.btnTipoVideojuego_Click);
             // 
             // btnVideojuego
             // 
             this.btnVideojuego.Location = new System.Drawing.Point(12, 61);
             this.btnVideojuego.Name = "btnVideojuego";
-            this.btnVideojuego.Size = new System.Drawing.Size(286, 23);
+            this.btnVideojuego.Size = new System.Drawing.Size(373, 23);
             this.btnVideojuego.TabIndex = 2;
             this.btnVideojuego.Text = "Gestionar Videojuegos\n";
             this.btnVideojuego.UseVisualStyleBackColor = true;
+            this.btnVideojuego.Click += new System.EventHandler(this.btnVideojuego_Click);
             // 
             // btnAdministrador
             // 
             this.btnAdministrador.Location = new System.Drawing.Point(13, 91);
             this.btnAdministrador.Name = "btnAdministrador";
-            this.btnAdministrador.Size = new System.Drawing.Size(285, 23);
+            this.btnAdministrador.Size = new System.Drawing.Size(372, 23);
             this.btnAdministrador.TabIndex = 3;
             this.btnAdministrador.Text = "Gestionar Administradores\n";
             this.btnAdministrador.UseVisualStyleBackColor = true;
+            this.btnAdministrador.Click += new System.EventHandler(this.btnAdministrador_Click);
             // 
             // btnTienda
             // 
             this.btnTienda.Location = new System.Drawing.Point(13, 121);
             this.btnTienda.Name = "btnTienda";
-            this.btnTienda.Size = new System.Drawing.Size(285, 23);
+            this.btnTienda.Size = new System.Drawing.Size(372, 23);
             this.btnTienda.TabIndex = 4;
             this.btnTienda.Text = "Gestionar Tiendas\n";
             this.btnTienda.UseVisualStyleBackColor = true;
+            this.btnTienda.Click += new System.EventHandler(this.btnTienda_Click);
             // 
             // btnCliente
             // 
             this.btnCliente.Location = new System.Drawing.Point(13, 151);
             this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(285, 23);
+            this.btnCliente.Size = new System.Drawing.Size(372, 23);
             this.btnCliente.TabIndex = 5;
             this.btnCliente.Text = "Gestionar Clientes\n";
             this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
             // 
             // btnInventario
             // 
             this.btnInventario.Location = new System.Drawing.Point(12, 181);
             this.btnInventario.Name = "btnInventario";
-            this.btnInventario.Size = new System.Drawing.Size(286, 23);
+            this.btnInventario.Size = new System.Drawing.Size(373, 23);
             this.btnInventario.TabIndex = 6;
             this.btnInventario.Text = "Gestionar Inventario\n";
             this.btnInventario.UseVisualStyleBackColor = true;
-           
+            this.btnInventario.Click += new System.EventHandler(this.btnInventario_Click);
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(117, 282);
+            this.btnSalir.Location = new System.Drawing.Point(165, 340);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 7;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
-            
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // FormMenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 317);
+            this.ClientSize = new System.Drawing.Size(397, 375);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnInventario);
             this.Controls.Add(this.btnCliente);
