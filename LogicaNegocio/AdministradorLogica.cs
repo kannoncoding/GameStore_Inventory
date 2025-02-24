@@ -29,19 +29,16 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar nuevo administrador con validaciones
         public string AgregarAdministrador(AdministradorEntidad admin)
         {
-            // Validar duplicado por Id
             if (administradorDatos.ExisteAdministrador(admin.IdAdministrador))
             {
                 return "Ya existe un administrador registrado con este ID.";
             }
 
-            // Validar duplicado por Identificación
             if (administradorDatos.BuscarPorIdentificacion(admin.Identificacion) != null)
             {
                 return "Ya existe un administrador registrado con esta identificación.";
             }
 
-            // Validaciones básicas
             if (string.IsNullOrWhiteSpace(admin.Identificacion))
             {
                 return "La identificación es obligatoria.";
@@ -66,6 +63,28 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
             else
             {
                 return "No se pueden ingresar más registros.";
+            }
+        }
+
+        // Método para eliminar un administrador por ID
+        public string EliminarAdministrador(int id)
+        {
+            AdministradorEntidad admin = administradorDatos.BuscarPorId(id);
+
+            if (admin == null)
+            {
+                return "El administrador con el ID especificado no existe.";
+            }
+
+            bool eliminado = administradorDatos.EliminarAdministrador(id);
+
+            if (eliminado)
+            {
+                return "El administrador ha sido eliminado correctamente.";
+            }
+            else
+            {
+                return "Ocurrió un error al intentar eliminar el administrador.";
             }
         }
 

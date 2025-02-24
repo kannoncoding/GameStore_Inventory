@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 using _45GAMES4U_Inventario.Entidad;
 using _45GAMES4U_Inventario.AccesoDatos;
-using System;
 
 namespace _45GAMES4U_Inventario.LogicaNegocio
 {
@@ -30,19 +29,16 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar un nuevo cliente con validaciones
         public string AgregarCliente(ClienteEntidad cliente)
         {
-            // Validar duplicado por IdCliente
             if (clienteDatos.ExisteCliente(cliente.IdCliente))
             {
                 return "Ya existe un cliente registrado con este ID.";
             }
 
-            // Validar duplicado por Identificación
             if (clienteDatos.BuscarPorIdentificacion(cliente.Identificacion) != null)
             {
                 return "Ya existe un cliente registrado con esta identificación.";
             }
 
-            // Validaciones básicas
             if (string.IsNullOrWhiteSpace(cliente.Identificacion))
             {
                 return "La identificación del cliente es obligatoria.";
@@ -58,7 +54,6 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "El correo electrónico es obligatorio.";
             }
 
-            // Registrar la fecha actual al momento del registro
             cliente.FechaRegistro = DateTime.Now;
 
             bool agregado = clienteDatos.AgregarCliente(cliente);
@@ -70,6 +65,28 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
             else
             {
                 return "No se pueden ingresar más registros.";
+            }
+        }
+
+        // Método para eliminar cliente por ID
+        public string EliminarCliente(int idCliente)
+        {
+            ClienteEntidad cliente = clienteDatos.BuscarPorId(idCliente);
+
+            if (cliente == null)
+            {
+                return "El cliente con el ID especificado no existe.";
+            }
+
+            bool eliminado = clienteDatos.EliminarCliente(idCliente);
+
+            if (eliminado)
+            {
+                return "El cliente ha sido eliminado correctamente.";
+            }
+            else
+            {
+                return "Ocurrió un error al intentar eliminar el cliente.";
             }
         }
 

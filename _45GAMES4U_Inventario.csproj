@@ -71,8 +71,71 @@
     <Compile Include="LogicaNegocio\TipoVideojuegoLogica.cs" />
     <Compile Include="LogicaNegocio\VideojuegoLogica.cs" />
     <Compile Include="LogicaNegocio\VideojuegosXTiendaLogica.cs" />
+    <Compile Include="Presentacion\FormAdministrador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormAdministrador.Designer.cs">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormCliente.Designer.cs">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormInventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormInventario.Designer.cs">
+      <DependentUpon>FormInventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormMenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormMenuPrincipal.Designer.cs">
+      <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormTienda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormTienda.Designer.cs">
+      <DependentUpon>FormTienda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormTipoVideojuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormTipoVideojuego.Designer.cs">
+      <DependentUpon>FormTipoVideojuego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentacion\FormVideojuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentacion\FormVideojuego.Designer.cs">
+      <DependentUpon>FormVideojuego.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentacion\FormAdministrador.resx">
+      <DependentUpon>FormAdministrador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormCliente.resx">
+      <DependentUpon>FormCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormInventario.resx">
+      <DependentUpon>FormInventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormMenuPrincipal.resx">
+      <DependentUpon>FormMenuPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormTienda.resx">
+      <DependentUpon>FormTienda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormTipoVideojuego.resx">
+      <DependentUpon>FormTipoVideojuego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentacion\FormVideojuego.resx">
+      <DependentUpon>FormVideojuego.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -96,8 +159,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Presentacion\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

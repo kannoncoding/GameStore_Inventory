@@ -88,5 +88,26 @@ namespace _45GAMES4U_Inventario.AccesoDatos
             }
             return null; // No encontrado
         }
+
+        // Método para eliminar administrador por IdAdministrador
+        public bool EliminarAdministrador(int idAdministrador)
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                if (administradores[i].IdAdministrador == idAdministrador)
+                {
+                    // Mover elementos hacia atrás para mantener el arreglo continuo
+                    for (int j = i; j < contador - 1; j++)
+                    {
+                        administradores[j] = administradores[j + 1];
+                    }
+
+                    administradores[contador - 1] = null;
+                    contador--;
+                    return true; // Eliminado con éxito
+                }
+            }
+            return false; // No encontrado
+        }
     }
 }

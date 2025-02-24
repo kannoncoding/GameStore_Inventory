@@ -4,19 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace _45GAMES4U_Inventory
+using _45GAMES4U_Inventario.Presentacion;
+
+namespace _45GAMES4U_Inventario
 {
-    static class Program
+    internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormMenuPrincipal());
+
         }
     }
 }
+

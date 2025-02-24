@@ -33,25 +33,21 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar inventario con validaciones
         public string AgregarInventario(VideojuegosXTiendaEntidad inventario)
         {
-            // Validar duplicado del inventario
             if (inventarioDatos.ExisteInventario(inventario.IdTienda, inventario.IdVideojuego))
             {
                 return "Ya existe un registro de inventario para este videojuego en esta tienda.";
             }
 
-            // Validar existencia previa de la tienda
             if (!tiendaDatos.ExisteTienda(inventario.IdTienda))
             {
                 return "La tienda especificada no existe.";
             }
 
-            // Validar existencia previa del videojuego
             if (!videojuegoDatos.ExisteVideojuego(inventario.IdVideojuego))
             {
                 return "El videojuego especificado no existe.";
             }
 
-            // Validar que el stock sea positivo
             if (inventario.Stock < 0)
             {
                 return "El stock no puede ser negativo.";
@@ -66,6 +62,28 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
             else
             {
                 return "No se pueden ingresar más registros.";
+            }
+        }
+
+        // Método para eliminar un registro del inventario por tienda y videojuego
+        public string EliminarVideojuegoXTienda(int idTienda, int idVideojuego)
+        {
+            VideojuegosXTiendaEntidad inventario = inventarioDatos.BuscarInventario(idTienda, idVideojuego);
+
+            if (inventario == null)
+            {
+                return "El inventario especificado no existe.";
+            }
+
+            bool eliminado = inventarioDatos.EliminarInventario(idTienda, idVideojuego);
+
+            if (eliminado)
+            {
+                return "El registro del inventario ha sido eliminado correctamente.";
+            }
+            else
+            {
+                return "Ocurrió un error al intentar eliminar el registro del inventario.";
             }
         }
 

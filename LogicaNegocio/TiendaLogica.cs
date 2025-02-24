@@ -31,19 +31,16 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar una nueva tienda con validaciones
         public string AgregarTienda(TiendaEntidad tienda)
         {
-            // Validar duplicado por IdTienda
             if (tiendaDatos.ExisteTienda(tienda.IdTienda))
             {
                 return "Ya existe una tienda registrada con este ID.";
             }
 
-            // Validar existencia del administrador
             if (!administradorDatos.ExisteAdministrador(tienda.IdAdministrador))
             {
                 return "El administrador asignado a esta tienda no existe.";
             }
 
-            // Validaciones básicas
             if (string.IsNullOrWhiteSpace(tienda.Nombre))
             {
                 return "El nombre de la tienda es obligatorio.";
@@ -68,6 +65,28 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
             else
             {
                 return "No se pueden ingresar más registros.";
+            }
+        }
+
+        // Método para eliminar una tienda por ID
+        public string EliminarTienda(int idTienda)
+        {
+            TiendaEntidad tienda = tiendaDatos.BuscarPorId(idTienda);
+
+            if (tienda == null)
+            {
+                return "La tienda con el ID especificado no existe.";
+            }
+
+            bool eliminado = tiendaDatos.EliminarTienda(idTienda);
+
+            if (eliminado)
+            {
+                return "La tienda ha sido eliminada correctamente.";
+            }
+            else
+            {
+                return "Ocurrió un error al intentar eliminar la tienda.";
             }
         }
 

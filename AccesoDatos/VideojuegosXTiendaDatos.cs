@@ -102,5 +102,26 @@ namespace _45GAMES4U_Inventario.AccesoDatos
 
             return resultado;
         }
+
+        // Método para eliminar un registro del inventario por IdTienda e IdVideojuego
+        public bool EliminarInventario(int idTienda, int idVideojuego)
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                if (inventarios[i].IdTienda == idTienda && inventarios[i].IdVideojuego == idVideojuego)
+                {
+                    // Desplazar inventarios restantes
+                    for (int j = i; j < contador - 1; j++)
+                    {
+                        inventarios[j] = inventarios[j + 1];
+                    }
+
+                    inventarios[contador - 1] = null;
+                    contador--;
+                    return true; // Eliminado con éxito
+                }
+            }
+            return false; // Inventario no encontrado
+        }
     }
 }

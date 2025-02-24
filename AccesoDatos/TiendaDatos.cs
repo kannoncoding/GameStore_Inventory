@@ -102,5 +102,26 @@ namespace _45GAMES4U_Inventario.AccesoDatos
 
             return resultado;
         }
+
+        // Método para eliminar una tienda por IdTienda
+        public bool EliminarTienda(int idTienda)
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                if (tiendas[i].IdTienda == idTienda)
+                {
+                    // Desplazar tiendas restantes
+                    for (int j = i; j < contador - 1; j++)
+                    {
+                        tiendas[j] = tiendas[j + 1];
+                    }
+
+                    tiendas[contador - 1] = null;
+                    contador--;
+                    return true; // Eliminada con éxito
+                }
+            }
+            return false; // Tienda no encontrada
+        }
     }
 }

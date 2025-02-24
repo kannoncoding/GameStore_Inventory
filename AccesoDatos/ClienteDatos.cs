@@ -88,5 +88,26 @@ namespace _45GAMES4U_Inventario.AccesoDatos
             }
             return null; // Cliente no encontrado
         }
+
+        // Método para eliminar un cliente por IdCliente
+        public bool EliminarCliente(int idCliente)
+        {
+            for (int i = 0; i < contador; i++)
+            {
+                if (clientes[i].IdCliente == idCliente)
+                {
+                    // Mover elementos para mantener continuidad
+                    for (int j = i; j < contador - 1; j++)
+                    {
+                        clientes[j] = clientes[j + 1];
+                    }
+
+                    clientes[contador - 1] = null;
+                    contador--;
+                    return true; // Eliminado con éxito
+                }
+            }
+            return false; // Cliente no encontrado
+        }
     }
 }
