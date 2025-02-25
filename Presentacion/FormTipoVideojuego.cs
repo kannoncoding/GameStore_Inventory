@@ -33,20 +33,31 @@ namespace _45GAMES4U_Inventario.Presentacion
         {
             try
             {
+                // Validar que el ID sea un número válido antes de la conversión
+                if (!int.TryParse(txtCodigoTipo.Text, out int id))
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido para el ID del tipo de videojuego.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 TipoVideojuegoEntidad nuevoTipo = new TipoVideojuegoEntidad
                 {
-                    IdTipoVideojuego = int.Parse(txtCodigoTipo.Text),
+                    IdTipoVideojuego = id,
+                    Nombre = txtNombreTipo.Text,
                     Descripcion = txtDescripcion.Text
                 };
 
-                tipoLogica.AgregarTipoVideojuego(nuevoTipo);
-                MessageBox.Show("El tipo de videojuego ha sido registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Llamar al método y capturar el mensaje de respuesta
+                string mensaje = tipoLogica.AgregarTipoVideojuego(nuevoTipo);
 
-                LimpiarCampos();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Por favor, ingrese un número válido para el ID del tipo de videojuego.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Mostrar el mensaje al usuario
+                MessageBox.Show(mensaje, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Solo limpiar si el registro fue exitoso
+                if (mensaje == "El tipo de videojuego se ha registrado correctamente.")
+                {
+                    LimpiarCampos();
+                }
             }
             catch (Exception ex)
             {
@@ -78,14 +89,16 @@ namespace _45GAMES4U_Inventario.Presentacion
 
         private void LimpiarCampos()
         {
+            txtNombreTipo.Clear();
             txtCodigoTipo.Clear();
             txtDescripcion.Clear();
             txtCodigoTipo.Focus();
+            txtNombreTipo.Focus();
         }
 
         private void FormTipoVideojuego_Load(object sender, EventArgs e)
         {
-
+            txtNombreTipo.Focus();
         }
     }
 }

@@ -37,13 +37,15 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvTiposVideojuego = new System.Windows.Forms.DataGridView();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNombreTipo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTiposVideojuego)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(12, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 0;
@@ -51,7 +53,8 @@
             // 
             // txtCodigoTipo
             // 
-            this.txtCodigoTipo.Location = new System.Drawing.Point(16, 30);
+            this.txtCodigoTipo.CausesValidation = false;
+            this.txtCodigoTipo.Location = new System.Drawing.Point(12, 69);
             this.txtCodigoTipo.Name = "txtCodigoTipo";
             this.txtCodigoTipo.Size = new System.Drawing.Size(301, 20);
             this.txtCodigoTipo.TabIndex = 1;
@@ -59,7 +62,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 57);
+            this.label2.Location = new System.Drawing.Point(9, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 2;
@@ -67,7 +70,7 @@
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(16, 75);
+            this.txtDescripcion.Location = new System.Drawing.Point(12, 108);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(304, 38);
@@ -75,7 +78,7 @@
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(12, 458);
+            this.btnConsultar.Location = new System.Drawing.Point(12, 490);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 23);
             this.btnConsultar.TabIndex = 4;
@@ -85,7 +88,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(242, 458);
+            this.btnRegistrar.Location = new System.Drawing.Point(501, 490);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrar.TabIndex = 5;
@@ -95,7 +98,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 540);
+            this.btnLimpiar.Location = new System.Drawing.Point(12, 586);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 6;
@@ -105,7 +108,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(242, 540);
+            this.btnSalir.Location = new System.Drawing.Point(501, 586);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 7;
@@ -118,18 +121,37 @@
             this.dgvTiposVideojuego.AllowUserToAddRows = false;
             this.dgvTiposVideojuego.AllowUserToDeleteRows = false;
             this.dgvTiposVideojuego.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTiposVideojuego.Location = new System.Drawing.Point(13, 120);
+            this.dgvTiposVideojuego.Location = new System.Drawing.Point(12, 152);
             this.dgvTiposVideojuego.Name = "dgvTiposVideojuego";
             this.dgvTiposVideojuego.ReadOnly = true;
             this.dgvTiposVideojuego.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiposVideojuego.Size = new System.Drawing.Size(304, 332);
+            this.dgvTiposVideojuego.Size = new System.Drawing.Size(564, 332);
             this.dgvTiposVideojuego.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(156, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Nombre del Tipo de Videojuego";
+            // 
+            // txtNombreTipo
+            // 
+            this.txtNombreTipo.Location = new System.Drawing.Point(12, 30);
+            this.txtNombreTipo.Name = "txtNombreTipo";
+            this.txtNombreTipo.Size = new System.Drawing.Size(304, 20);
+            this.txtNombreTipo.TabIndex = 10;
+            this.txtNombreTipo.Enter += new System.EventHandler(this.FormTipoVideojuego_Load);
             // 
             // FormTipoVideojuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 575);
+            this.ClientSize = new System.Drawing.Size(588, 621);
+            this.Controls.Add(this.txtNombreTipo);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.dgvTiposVideojuego);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
@@ -144,7 +166,10 @@
             this.Name = "FormTipoVideojuego";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrar Tipos de Videojuegos\n";
+            this.Activated += new System.EventHandler(this.FormTipoVideojuego_Load);
             this.Load += new System.EventHandler(this.FormTipoVideojuego_Load);
+            this.Enter += new System.EventHandler(this.FormTipoVideojuego_Load);
+            this.Validated += new System.EventHandler(this.FormTipoVideojuego_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTiposVideojuego)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -162,5 +187,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.DataGridView dgvTiposVideojuego;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNombreTipo;
     }
 }

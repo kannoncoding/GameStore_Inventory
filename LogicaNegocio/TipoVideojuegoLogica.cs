@@ -21,7 +21,19 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar un nuevo tipo de videojuego con validaciones
         public string AgregarTipoVideojuego(TipoVideojuegoEntidad tipo)
         {
-            // Validar duplicados
+            // Validar que el nombre no esté vacío
+            if (string.IsNullOrWhiteSpace(tipo.Nombre))
+            {
+                return "El nombre del tipo de videojuego no puede estar vacío.";
+            }
+
+            // Validar que la descripción no esté vacía
+            if (string.IsNullOrWhiteSpace(tipo.Descripcion))
+            {
+                return "La descripción del tipo de videojuego no puede estar vacía.";
+            }
+
+            // Validar si el ID ya existe
             for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
             {
                 if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == tipo.IdTipoVideojuego)
@@ -30,12 +42,16 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 }
             }
 
-            // Validación que el nombre no esté vacío
-            if (string.IsNullOrWhiteSpace(tipo.Descripcion))
+            // Validar si el Nombre ya existe (sin distinguir mayúsculas y minúsculas)
+            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
             {
-                return "La descripción del tipo de videojuego no puede estar vacía.";
+                if (DatosInventario.tiposVideojuegos[i].Nombre.Equals(tipo.Nombre, StringComparison.OrdinalIgnoreCase))
+                {
+                    return "Ya existe un tipo de videojuego con este nombre.";
+                }
             }
 
+            // Verificar si hay espacio en el arreglo
             if (DatosInventario.contadorTiposVideojuegos < DatosInventario.tiposVideojuegos.Length)
             {
                 DatosInventario.tiposVideojuegos[DatosInventario.contadorTiposVideojuegos] = tipo;
