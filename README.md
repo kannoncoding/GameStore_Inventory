@@ -1,20 +1,20 @@
 # _45GAMES4U_Inventario
 
-Aplicaci髇 de escritorio para la gesti髇 de inventario de videojuegos.
+Aplicaci贸n de escritorio para la gesti贸n de inventario de varias tiendas de videojuegos.
 
 ## Estructura del Proyecto
 - **Entidad**: Clases con las entidades principales del sistema.
 - **AccesoDatos**: Manejo de la persistencia y acceso a la base de datos.
-- **LogicaNegocio**: L骻ica de negocio y validaciones.
+- **LogicaNegocio**: L贸gica de negocio y validaciones.
 - **Presentacion**: Interfaz de usuario con Windows Forms.
 
-## Tecnolog韆s Utilizadas
+## Tecnolog铆as Utilizadas
 - C# .NET 8.0
 - Windows Forms
 - Visual Studio 2022
 - GitHub para control de versiones
 
-## Instalaci髇
+## Instalaci贸n
 1. Clonar el repositorio:
 2. Abrir en **Visual Studio 2022**.
-3. Ejecutar la aplicaci髇.
+3. Ejecutar la aplicaci贸n.
