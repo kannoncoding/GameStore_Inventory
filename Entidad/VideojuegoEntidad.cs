@@ -36,16 +36,13 @@ namespace _45GAMES4U_Inventario.Entidad
         // Clasificación por edad (Ejemplo: E, T, M)
         public string ClasificacionEdad { get; set; }
 
-        // Nombre del desarrollador del videojuego
-        public string Desarrollador { get; set; }
-
         // Constructor sin parámetros
         public VideojuegoEntidad() { }
 
         // Constructor con parámetros
         public VideojuegoEntidad(int idVideojuego, string nombre, string descripcion,
                                  string plataforma, decimal precio, int idTipoVideojuego,
-                                 string clasificacionEdad, string desarrollador)
+                                 string clasificacionEdad)
         {
             IdVideojuego = idVideojuego;
             Nombre = nombre;
@@ -54,7 +51,7 @@ namespace _45GAMES4U_Inventario.Entidad
             Precio = precio;
             IdTipoVideojuego = idTipoVideojuego;
             ClasificacionEdad = clasificacionEdad;
-            Desarrollador = desarrollador;
+           
         }
     }
 }
