@@ -45,6 +45,8 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.cmbClasificacionEdad = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDescripcion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVideojuegos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,7 +120,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(187, 52);
+            this.label5.Location = new System.Drawing.Point(12, 92);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 8;
@@ -126,7 +128,7 @@
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(184, 69);
+            this.txtPrecio.Location = new System.Drawing.Point(13, 108);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(199, 20);
             this.txtPrecio.TabIndex = 9;
@@ -142,7 +144,7 @@
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(13, 121);
+            this.btnConsultar.Location = new System.Drawing.Point(12, 142);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(75, 23);
             this.btnConsultar.TabIndex = 12;
@@ -152,7 +154,7 @@
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(713, 120);
+            this.btnRegistrar.Location = new System.Drawing.Point(713, 142);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
             this.btnRegistrar.TabIndex = 13;
@@ -200,11 +202,30 @@
             this.cmbClasificacionEdad.Size = new System.Drawing.Size(121, 21);
             this.cmbClasificacionEdad.TabIndex = 17;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(218, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Descripcion";
+            // 
+            // txtDescripcion
+            // 
+            this.txtDescripcion.Location = new System.Drawing.Point(221, 67);
+            this.txtDescripcion.Multiline = true;
+            this.txtDescripcion.Name = "txtDescripcion";
+            this.txtDescripcion.Size = new System.Drawing.Size(436, 61);
+            this.txtDescripcion.TabIndex = 19;
+            // 
             // FormVideojuego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 567);
+            this.Controls.Add(this.txtDescripcion);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbClasificacionEdad);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
@@ -253,5 +274,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.ComboBox cmbClasificacionEdad;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtDescripcion;
     }
 }

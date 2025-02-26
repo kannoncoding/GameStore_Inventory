@@ -54,27 +54,45 @@ namespace _45GAMES4U_Inventario.Presentacion
         {
             try
             {
+                // Validar que el ID sea un número válido antes de la conversión
+                if (!int.TryParse(txtIdVideojuego.Text, out int id))
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido para el ID del videojuego.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(txtPrecio.Text, out int precio))
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido para el precio del videojuego.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 VideojuegoEntidad nuevoVideojuego = new VideojuegoEntidad
                 {
-                    IdVideojuego = int.Parse(txtIdVideojuego.Text),
+                    IdVideojuego = id,
                     Nombre = txtNombre.Text,
-                    IdTipoVideojuego = (int)cmbTipoVideojuego.SelectedValue,
+                    Descripcion = txtDescripcion.Text,
                     Plataforma = txtPlataforma.Text,
-                    Precio = decimal.Parse(txtPrecio.Text),
-                    ClasificacionEdad = cmbClasificacionEdad.SelectedItem.ToString()
+                    Precio = precio,
+                    IdTipoVideojuego = (int)cmbTipoVideojuego.SelectedValue,
+                    ClasificacionEdad = cmbClasificacionEdad.Text
                 };
 
-                videojuegoLogica.AgregarVideojuego(nuevoVideojuego);
-                MessageBox.Show("El videojuego ha sido registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Verifica que el código y precio sean numéricos.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Llamar al método y capturar el mensaje de respuesta
+                string mensaje = videojuegoLogica.AgregarVideojuego(nuevoVideojuego);
+
+                // Mostrar el mensaje al usuario
+                MessageBox.Show(mensaje, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Solo limpiar si el registro fue exitoso
+                if (mensaje == "El videojuego se ha registrado correctamente.")
+                {
+                    LimpiarCampos();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -103,6 +121,7 @@ namespace _45GAMES4U_Inventario.Presentacion
         private void LimpiarCampos()
         {
             txtIdVideojuego.Clear();
+            txtDescripcion.Clear();
             txtNombre.Clear();
             txtPlataforma.Clear();
             txtPrecio.Clear();

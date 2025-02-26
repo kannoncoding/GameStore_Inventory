@@ -21,12 +21,45 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar un nuevo videojuego con validaciones
         public string AgregarVideojuego(VideojuegoEntidad videojuego)
         {
-            // Validar duplicado
+            // Validar que el nombre no esté vacío
+            if (string.IsNullOrWhiteSpace(videojuego.Nombre))
+            {
+                return "El nombre del videojuego no puede estar vacío.";
+            }
+
+            // Validar que el precio sea mayor a cero
+            if (videojuego.Precio <= 0)
+            {
+                return "El precio debe ser mayor que cero.";
+            }
+
+            // Validar que la plataforma no esté vacía
+            if (string.IsNullOrWhiteSpace(videojuego.Plataforma))
+            {
+                return "Debe especificar la plataforma del videojuego.";
+            }
+
+            // Validar que la clasificación por edad no esté vacía
+            if (string.IsNullOrWhiteSpace(videojuego.ClasificacionEdad))
+            {
+                return "Debe indicar la clasificación por edad del videojuego.";
+            }
+
+            // Validar si el ID ya existe
             for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
             {
                 if (DatosInventario.videojuegos[i].IdVideojuego == videojuego.IdVideojuego)
                 {
                     return "Ya existe un videojuego registrado con este ID.";
+                }
+            }
+
+            // Validar si el Nombre ya existe (sin distinguir mayúsculas y minúsculas)
+            for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
+            {
+                if (DatosInventario.videojuegos[i].Nombre.Equals(videojuego.Nombre, StringComparison.OrdinalIgnoreCase))
+                {
+                    return "Ya existe un videojuego con este nombre.";
                 }
             }
 
@@ -45,27 +78,7 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "El tipo de videojuego seleccionado no existe.";
             }
 
-            // Validaciones básicas
-            if (string.IsNullOrWhiteSpace(videojuego.Nombre))
-            {
-                return "El nombre del videojuego no puede estar vacío.";
-            }
-
-            if (videojuego.Precio <= 0)
-            {
-                return "El precio debe ser mayor que cero.";
-            }
-
-            if (string.IsNullOrWhiteSpace(videojuego.Plataforma))
-            {
-                return "Debe especificar la plataforma del videojuego.";
-            }
-
-            if (string.IsNullOrWhiteSpace(videojuego.ClasificacionEdad))
-            {
-                return "Debe indicar la clasificación por edad del videojuego.";
-            }
-
+            // Verificar si hay espacio en el arreglo
             if (DatosInventario.contadorVideojuegos < DatosInventario.videojuegos.Length)
             {
                 DatosInventario.videojuegos[DatosInventario.contadorVideojuegos] = videojuego;
@@ -78,6 +91,7 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
             }
         }
 
+
         // Método para buscar videojuego por ID
         public VideojuegoEntidad BuscarVideojuegoPorId(int id)
         {
@@ -87,7 +101,7 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                     return DatosInventario.videojuegos[i];
             }
             return null;
-        }
+        } 
 
         // Método para obtener todos los videojuegos registrados
         public VideojuegoEntidad[] ObtenerTodosVideojuegos()
