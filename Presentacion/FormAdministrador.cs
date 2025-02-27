@@ -15,7 +15,6 @@ using System.Windows.Forms;
 // 1er Cuatrimestre
 // Formulario para gestionar Administradores de Tiendas
 
-
 using _45GAMES4U_Inventario.Entidad;
 using _45GAMES4U_Inventario.LogicaNegocio;
 
@@ -33,7 +32,6 @@ namespace _45GAMES4U_Inventario.Presentacion
         private void CargarComboTienda()
         {
             // Obtener todas las tiendas de la lógica de negocios
-
             TiendaLogica tiendaLogica = new TiendaLogica();
             TiendaEntidad[] tiendas = tiendaLogica.ObtenerTodasTiendas();
 
@@ -52,9 +50,22 @@ namespace _45GAMES4U_Inventario.Presentacion
                     return;
                 }
 
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text))
+                {
+                    MessageBox.Show("Debe ingresar el nombre y el apellido.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (cmbTienda.SelectedItem == null)
                 {
                     MessageBox.Show("Debe seleccionar una tienda asignada.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Validar si el ID del administrador ya existe
+                if (administradorLogica.BuscarAdministradorPorId(idAdmin) != null)
+                {
+                    MessageBox.Show("Ya existe un administrador con este ID.", "Registro Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -66,6 +77,7 @@ namespace _45GAMES4U_Inventario.Presentacion
                     IdAdministrador = idAdmin,
                     Identificacion = txtIdAdministrador.Text,
                     Nombre = txtNombre.Text,
+                    Apellido = txtApellido.Text,
                     Telefono = txtTelefono.Text,
                     Correo = txtCorreo.Text,
                     IdTienda = tiendaSeleccionada.IdTienda // Asignar la tienda
@@ -126,6 +138,7 @@ namespace _45GAMES4U_Inventario.Presentacion
         {
             txtIdAdministrador.Clear();
             txtNombre.Clear();
+            txtApellido.Clear();
             txtTelefono.Clear();
             txtCorreo.Clear();
             txtIdAdministrador.Focus();

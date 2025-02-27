@@ -44,6 +44,8 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtApellido = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdministradores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,15 +70,15 @@
             this.labelnombre.AutoSize = true;
             this.labelnombre.Location = new System.Drawing.Point(177, 13);
             this.labelnombre.Name = "labelnombre";
-            this.labelnombre.Size = new System.Drawing.Size(91, 13);
+            this.labelnombre.Size = new System.Drawing.Size(44, 13);
             this.labelnombre.TabIndex = 2;
-            this.labelnombre.Text = "Nombre Completo";
+            this.labelnombre.Text = "Nombre";
             // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(180, 30);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(301, 20);
+            this.txtNombre.Size = new System.Drawing.Size(151, 20);
             this.txtNombre.TabIndex = 3;
             // 
             // label1
@@ -90,9 +92,9 @@
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(487, 30);
+            this.txtTelefono.Location = new System.Drawing.Point(530, 30);
             this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(181, 20);
+            this.txtTelefono.Size = new System.Drawing.Size(138, 20);
             this.txtTelefono.TabIndex = 5;
             // 
             // label2
@@ -191,11 +193,29 @@
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(338, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 13);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Apellido";
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.Location = new System.Drawing.Point(338, 30);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(186, 20);
+            this.txtApellido.TabIndex = 18;
+            // 
             // FormAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 492);
+            this.Controls.Add(this.txtApellido);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnLimpiar);
@@ -242,5 +262,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtApellido;
     }
 }

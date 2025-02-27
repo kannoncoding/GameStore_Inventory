@@ -33,18 +33,29 @@ namespace _45GAMES4U_Inventario.Presentacion
         {
             try
             {
+                int idCliente = int.Parse(txtIdCliente.Text); // Capturar el ID del cliente
+
                 ClienteEntidad nuevoCliente = new ClienteEntidad
                 {
-                    IdCliente = int.Parse(txtIdCliente.Text),
+                    IdCliente = idCliente, // Se asigna el ID
+                    Identificacion = txtIdCliente.Text, // También se usa como Identificación
                     Nombre = txtNombre.Text,
                     Apellido = txtApellido.Text,
                     Telefono = txtTelefono.Text,
                     Correo = txtCorreo.Text
                 };
 
-                clienteLogica.AgregarCliente(nuevoCliente);
-                MessageBox.Show("Cliente registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
+                string mensaje = clienteLogica.AgregarCliente(nuevoCliente);
+
+                MessageBox.Show(mensaje, mensaje.Contains("correctamente") ? "Éxito" : "Error",
+                    MessageBoxButtons.OK,
+                    mensaje.Contains("correctamente") ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+
+                if (mensaje.Contains("correctamente"))
+                {
+                    LimpiarCampos();
+                    ActualizarDataGridView(); // Actualizar la tabla
+                }
             }
             catch (FormatException)
             {
@@ -55,6 +66,15 @@ namespace _45GAMES4U_Inventario.Presentacion
                 MessageBox.Show("Error al registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        // Método para actualizar la tabla de clientes después de registrar
+        private void ActualizarDataGridView()
+        {
+            dgvClientes.DataSource = null;
+            dgvClientes.DataSource = clienteLogica.ObtenerTodosClientes();
+        }
+
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {

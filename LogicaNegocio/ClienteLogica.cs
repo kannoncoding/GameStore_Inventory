@@ -21,14 +21,12 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar un nuevo cliente con validaciones
         public string AgregarCliente(ClienteEntidad cliente)
         {
-            // Validar duplicado por ID o Identificación
             for (int i = 0; i < DatosInventario.contadorClientes; i++)
             {
                 if (DatosInventario.clientes[i].IdCliente == cliente.IdCliente)
                 {
                     return "Ya existe un cliente registrado con este ID.";
                 }
-
                 if (DatosInventario.clientes[i].Identificacion == cliente.Identificacion)
                 {
                     return "Ya existe un cliente registrado con esta identificación.";
@@ -56,6 +54,11 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
             {
                 DatosInventario.clientes[DatosInventario.contadorClientes] = cliente;
                 DatosInventario.contadorClientes++;
+
+                // Depuración: Verificar si realmente se está guardando el cliente
+                Console.WriteLine($"Cliente agregado: {cliente.IdCliente} - {cliente.Nombre}");
+                Console.WriteLine($"Total clientes: {DatosInventario.contadorClientes}");
+
                 return "El cliente se ha registrado correctamente.";
             }
             else
@@ -63,6 +66,7 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "No se pueden ingresar más registros.";
             }
         }
+
 
         // Método para eliminar cliente por ID
         public string EliminarCliente(int idCliente)
@@ -94,8 +98,22 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para obtener todos los clientes registrados
         public ClienteEntidad[] ObtenerTodosClientes()
         {
+            if (DatosInventario.contadorClientes == 0)
+            {
+                Console.WriteLine("No hay clientes registrados.");
+                return new ClienteEntidad[0]; // Retorna un arreglo vacío si no hay clientes
+            }
+
             ClienteEntidad[] lista = new ClienteEntidad[DatosInventario.contadorClientes];
             Array.Copy(DatosInventario.clientes, lista, DatosInventario.contadorClientes);
+
+            // Depuración: Mostrar los clientes en la consola
+            Console.WriteLine("Clientes registrados:");
+            foreach (var cliente in lista)
+            {
+                Console.WriteLine($"{cliente.IdCliente} - {cliente.Nombre} {cliente.Apellido}");
+            }
+
             return lista;
         }
 
