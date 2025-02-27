@@ -55,11 +55,7 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 DatosInventario.clientes[DatosInventario.contadorClientes] = cliente;
                 DatosInventario.contadorClientes++;
 
-                // Depuración: Verificar si realmente se está guardando el cliente
-                Console.WriteLine($"Cliente agregado: {cliente.IdCliente} - {cliente.Nombre}");
-                Console.WriteLine($"Total clientes: {DatosInventario.contadorClientes}");
-
-                return "El cliente se ha registrado correctamente.";
+              return "El cliente se ha registrado correctamente.";
             }
             else
             {
@@ -100,20 +96,14 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         {
             if (DatosInventario.contadorClientes == 0)
             {
-                Console.WriteLine("No hay clientes registrados.");
+               
                 return new ClienteEntidad[0]; // Retorna un arreglo vacío si no hay clientes
             }
 
             ClienteEntidad[] lista = new ClienteEntidad[DatosInventario.contadorClientes];
             Array.Copy(DatosInventario.clientes, lista, DatosInventario.contadorClientes);
 
-            // Depuración: Mostrar los clientes en la consola
-            Console.WriteLine("Clientes registrados:");
-            foreach (var cliente in lista)
-            {
-                Console.WriteLine($"{cliente.IdCliente} - {cliente.Nombre} {cliente.Apellido}");
-            }
-
+            
             return lista;
         }
 
