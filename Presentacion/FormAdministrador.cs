@@ -30,26 +30,54 @@ namespace _45GAMES4U_Inventario.Presentacion
             InitializeComponent();
         }
 
+        private void CargarComboTienda()
+        {
+            // Obtener todas las tiendas de la lógica de negocios
+
+            TiendaLogica tiendaLogica = new TiendaLogica();
+            TiendaEntidad[] tiendas = tiendaLogica.ObtenerTodasTiendas();
+
+            cmbTienda.DataSource = tiendas;
+            cmbTienda.DisplayMember = "Nombre"; // Mostrar el nombre de la tienda
+            cmbTienda.ValueMember = "IdTienda"; // Guardar el ID de la tienda
+        }
+
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
+                if (!int.TryParse(txtIdAdministrador.Text, out int idAdmin))
+                {
+                    MessageBox.Show("El ID del administrador debe ser un número.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cmbTienda.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar una tienda asignada.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Obtener la tienda seleccionada
+                TiendaEntidad tiendaSeleccionada = (TiendaEntidad)cmbTienda.SelectedItem;
+
                 AdministradorEntidad nuevoAdmin = new AdministradorEntidad
                 {
-                    IdAdministrador = int.Parse(txtIdAdministrador.Text),
+                    IdAdministrador = idAdmin,
                     Identificacion = txtIdAdministrador.Text,
                     Nombre = txtNombre.Text,
                     Telefono = txtTelefono.Text,
-                    Correo = txtCorreo.Text
+                    Correo = txtCorreo.Text,
+                    IdTienda = tiendaSeleccionada.IdTienda // Asignar la tienda
                 };
 
-                administradorLogica.AgregarAdministrador(nuevoAdmin);
-                MessageBox.Show("Administrador registrado exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Verifica que el ID sea numérico.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string mensaje = administradorLogica.AgregarAdministrador(nuevoAdmin);
+                MessageBox.Show(mensaje, "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (mensaje == "El administrador se ha registrado correctamente.")
+                {
+                    LimpiarCampos();
+                }
             }
             catch (Exception ex)
             {
@@ -105,7 +133,7 @@ namespace _45GAMES4U_Inventario.Presentacion
 
         private void FormAdministrador_Load(object sender, EventArgs e)
         {
-
+            CargarComboTienda();
         }
     }
 }
