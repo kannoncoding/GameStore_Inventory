@@ -1,9 +1,0 @@
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\bin\Debug\45GAMES4U_Inventory.exe.config
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\bin\Debug\45GAMES4U_Inventory.exe
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\bin\Debug\45GAMES4U_Inventory.pdb
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\obj\Debug\45GAMES4U_Inventory.csproj.AssemblyReference.cache
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\obj\Debug\_45GAMES4U_Inventory.Properties.Resources.resources
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\obj\Debug\45GAMES4U_Inventory.csproj.GenerateResource.cache
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\obj\Debug\45GAMES4U_Inventory.csproj.CoreCompileInputs.cache
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\obj\Debug\45GAMES4U_Inventory.exe
-C:\Users\Pegasus Onr\OneDrive - Universidad Estatal a Distancia\Documentos\UNED\2025\1er Cuatri\PROGRAMACIÓN AVANZADA\Proyecto 1\45GAMES4U_Inventory\obj\Debug\45GAMES4U_Inventory.pdb
