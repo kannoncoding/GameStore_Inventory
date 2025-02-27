@@ -21,7 +21,25 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para agregar una nueva tienda con validaciones
         public string AgregarTienda(TiendaEntidad tienda)
         {
-            // Validar duplicado por ID
+            // Validar que el nombre no esté vacío
+            if (string.IsNullOrWhiteSpace(tienda.Nombre))
+            {
+                return "El nombre de la tienda es obligatorio.";
+            }
+
+            // Validar que la dirección no esté vacía
+            if (string.IsNullOrWhiteSpace(tienda.Direccion))
+            {
+                return "La dirección de la tienda es obligatoria.";
+            }
+
+            // Validar que el teléfono no esté vacío
+            if (string.IsNullOrWhiteSpace(tienda.Telefono))
+            {
+                return "El teléfono de la tienda es obligatorio.";
+            }
+
+            // Validar si el ID ya existe
             for (int i = 0; i < DatosInventario.contadorTiendas; i++)
             {
                 if (DatosInventario.tiendas[i].IdTienda == tienda.IdTienda)
@@ -30,21 +48,16 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 }
             }
 
-            if (string.IsNullOrWhiteSpace(tienda.Nombre))
+            // Validar si el Nombre ya existe (sin distinguir mayúsculas y minúsculas)
+            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
             {
-                return "El nombre de la tienda es obligatorio.";
+                if (DatosInventario.tiendas[i].Nombre.Equals(tienda.Nombre, StringComparison.OrdinalIgnoreCase))
+                {
+                    return "Ya existe una tienda con este nombre.";
+                }
             }
 
-            if (string.IsNullOrWhiteSpace(tienda.Direccion))
-            {
-                return "La dirección de la tienda es obligatoria.";
-            }
-
-            if (string.IsNullOrWhiteSpace(tienda.Telefono))
-            {
-                return "El teléfono de la tienda es obligatorio.";
-            }
-
+            // Verificar si hay espacio en el arreglo
             if (DatosInventario.contadorTiendas < DatosInventario.tiendas.Length)
             {
                 DatosInventario.tiendas[DatosInventario.contadorTiendas] = tienda;
@@ -80,8 +93,14 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
         // Método para buscar tienda por ID
         public TiendaEntidad BuscarTiendaPorId(int idTienda)
         {
-            return DatosInventario.tiendas
-                .FirstOrDefault(t => t != null && t.IdTienda == idTienda);
+            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
+            {
+                if (DatosInventario.tiendas[i].IdTienda == idTienda)
+                {
+                    return DatosInventario.tiendas[i];
+                }
+            }
+            return null;
         }
 
         // Método para obtener todas las tiendas registradas

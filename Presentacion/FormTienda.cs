@@ -15,7 +15,6 @@ using System.Windows.Forms;
 // 1er Cuatrimestre
 // Formulario para gestionar Tiendas
 
-
 using _45GAMES4U_Inventario.Entidad;
 using _45GAMES4U_Inventario.LogicaNegocio;
 
@@ -34,25 +33,41 @@ namespace _45GAMES4U_Inventario.Presentacion
         {
             try
             {
+                // Validar que el ID sea un número válido antes de la conversión
+                if (!int.TryParse(txtIdTienda.Text, out int id))
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido para el ID de la tienda.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string nombreTienda = txtNombreTienda.Text.Trim();
+                string direccion = txtDireccion.Text.Trim();
+                string telefono = txtTelefono.Text.Trim();
+
+                // Crear la nueva tienda
                 TiendaEntidad nuevaTienda = new TiendaEntidad
                 {
-                    IdTienda = int.Parse(txtIdTienda.Text),
-                    Nombre = txtNombreTienda.Text,
-                    Direccion = txtDireccion.Text,
-                    Telefono = txtTelefono.Text
+                    IdTienda = id,
+                    Nombre = nombreTienda,
+                    Direccion = direccion,
+                    Telefono = telefono
                 };
 
-                tiendaLogica.AgregarTienda(nuevaTienda);
-                MessageBox.Show("Tienda registrada exitosamente.", "Registro Exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Verifica que el código sea numérico.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Llamar al método y capturar el mensaje de respuesta
+                string mensaje = tiendaLogica.AgregarTienda(nuevaTienda);
+
+                // Mostrar el mensaje al usuario
+                MessageBox.Show(mensaje, "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Solo limpiar si el registro fue exitoso
+                if (mensaje == "La tienda se ha registrado correctamente.")
+                {
+                    LimpiarCampos();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al registrar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -62,25 +77,16 @@ namespace _45GAMES4U_Inventario.Presentacion
             {
                 TiendaEntidad[] tiendas = tiendaLogica.ObtenerTodasTiendas();
 
-                // Limpiar las filas existentes del DataGridView
-                dgvTiendas.Rows.Clear();
-                dgvTiendas.Columns.Clear();
-
-                // Añadir columnas (solo la primera vez)
-                dgvTiendas.Columns.Add("IdTienda", "ID Tienda");
-                dgvTiendas.Columns.Add("Nombre", "Nombre");
-                dgvTiendas.Columns.Add("Direccion", "Dirección");
-                dgvTiendas.Columns.Add("Telefono", "Teléfono");
-
-                // Añadir filas al DataGridView
-                foreach (var tienda in tiendas)
+                if (tiendas.Length == 0)
                 {
-                    if (tienda != null)
-                    {
-                        dgvTiendas.Rows.Add(tienda.IdTienda, tienda.Nombre, tienda.Direccion, tienda.Telefono);
-                    }
+                    MessageBox.Show("No hay tiendas registradas.", "Consulta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
 
+                dgvTiendas.DataSource = null;  // Resetear DataGridView
+                dgvTiendas.DataSource = tiendas;
+
+                // Ajustar columnas
                 dgvTiendas.AutoResizeColumns();
             }
             catch (Exception ex)
