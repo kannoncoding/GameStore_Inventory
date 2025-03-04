@@ -50,11 +50,37 @@ namespace _45GAMES4U_Inventario.LogicaNegocio
                 return "El correo electrónico es obligatorio.";
             }
 
+            // Verificar si la tienda asignada existe
+            TiendaEntidad tienda = null;
+            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
+            {
+                if (DatosInventario.tiendas[i].IdTienda == admin.IdTienda)
+                {
+                    tienda = DatosInventario.tiendas[i];
+                    break;
+                }
+            }
+
+            if (tienda == null)
+            {
+                return "La tienda seleccionada no existe.";
+            }
+
+            // Verificar si la tienda ya tiene un administrador asignado
+            if (tienda.IdAdministrador != 0)
+            {
+                return "Esta tienda ya tiene un administrador asignado.";
+            }
+
             if (DatosInventario.contadorAdministradores < DatosInventario.administradores.Length)
             {
                 DatosInventario.administradores[DatosInventario.contadorAdministradores] = admin;
                 DatosInventario.contadorAdministradores++;
-                return "El administrador se ha registrado correctamente.";
+
+                // **Asignar el administrador a la tienda**
+                tienda.IdAdministrador = admin.IdAdministrador;
+
+                return "El administrador se ha registrado correctamente y se ha asignado a la tienda.";
             }
             else
             {

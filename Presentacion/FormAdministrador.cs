@@ -22,40 +22,53 @@ namespace _45GAMES4U_Inventario.Presentacion
 {
     public partial class FormAdministrador : Form
     {
+        // Instancia de la lógica de negocio para manejar administradores
         private AdministradorLogica administradorLogica = new AdministradorLogica();
+        // Instancia de la lógica de negocio para manejar tiendas
+        private TiendaLogica tiendaLogica = new TiendaLogica();
 
+        // Constructor del formulario
         public FormAdministrador()
         {
             InitializeComponent();
         }
 
-        private void CargarComboTienda()
+        // Evento que se ejecuta al cargar el formulario
+        private void FormAdministrador_Load(object sender, EventArgs e)
         {
-            // Obtener todas las tiendas de la lógica de negocios
-            TiendaLogica tiendaLogica = new TiendaLogica();
-            TiendaEntidad[] tiendas = tiendaLogica.ObtenerTodasTiendas();
-
-            cmbTienda.DataSource = tiendas;
-            cmbTienda.DisplayMember = "Nombre"; // Mostrar el nombre de la tienda
-            cmbTienda.ValueMember = "IdTienda"; // Guardar el ID de la tienda
+            CargarComboTienda(); // Cargar las tiendas en el ComboBox
         }
 
+        // Método para cargar las tiendas en el ComboBox
+        private void CargarComboTienda()
+        {
+            TiendaEntidad[] tiendas = tiendaLogica.ObtenerTodasTiendas(); // Obtener tiendas
+            cmbTienda.DataSource = tiendas; // Asignar datos al ComboBox
+            cmbTienda.DisplayMember = "Nombre"; // Mostrar el nombre de la tienda
+            cmbTienda.ValueMember = "IdTienda"; // Guardar el ID de la tienda
+            cmbTienda.SelectedIndex = -1; // Para que inicie sin selección
+        }
+
+        // Evento para registrar un administrador
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             try
             {
+                // Validar que el ID del administrador sea un número
                 if (!int.TryParse(txtIdAdministrador.Text, out int idAdmin))
                 {
                     MessageBox.Show("El ID del administrador debe ser un número.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Validar que se ingresen el nombre y el apellido
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text))
                 {
                     MessageBox.Show("Debe ingresar el nombre y el apellido.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
+                // Validar que se seleccione una tienda
                 if (cmbTienda.SelectedItem == null)
                 {
                     MessageBox.Show("Debe seleccionar una tienda asignada.", "Dato Inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -69,9 +82,10 @@ namespace _45GAMES4U_Inventario.Presentacion
                     return;
                 }
 
-                // Obtener la tienda seleccionada
+                // Obtener la tienda seleccionada del ComboBox
                 TiendaEntidad tiendaSeleccionada = (TiendaEntidad)cmbTienda.SelectedItem;
 
+                // Crear un nuevo objeto de AdministradorEntidad con los datos ingresados
                 AdministradorEntidad nuevoAdmin = new AdministradorEntidad
                 {
                     IdAdministrador = idAdmin,
@@ -83,10 +97,12 @@ namespace _45GAMES4U_Inventario.Presentacion
                     IdTienda = tiendaSeleccionada.IdTienda // Asignar la tienda
                 };
 
+                // Llamar a la lógica de negocio para registrar el administrador
                 string mensaje = administradorLogica.AgregarAdministrador(nuevoAdmin);
                 MessageBox.Show(mensaje, "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (mensaje == "El administrador se ha registrado correctamente.")
+                // Limpiar campos si el registro fue exitoso
+                if (mensaje.Contains("registrado correctamente"))
                 {
                     LimpiarCampos();
                 }
@@ -97,11 +113,12 @@ namespace _45GAMES4U_Inventario.Presentacion
             }
         }
 
+        // Evento para consultar todos los administradores
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             try
             {
-                dgvAdministradores.DataSource = administradorLogica.ObtenerTodosAdministradores();
+                dgvAdministradores.DataSource = administradorLogica.ObtenerTodosAdministradores(); // Obtener datos y mostrarlos en DataGridView
             }
             catch (Exception ex)
             {
@@ -109,14 +126,21 @@ namespace _45GAMES4U_Inventario.Presentacion
             }
         }
 
+        // Evento para eliminar un administrador
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
-                int id = int.Parse(txtIdAdministrador.Text);
-                administradorLogica.EliminarAdministrador(id);
-                MessageBox.Show("Administrador eliminado exitosamente.", "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimpiarCampos();
+                if (int.TryParse(txtIdAdministrador.Text, out int id))
+                {
+                    administradorLogica.EliminarAdministrador(id); // Llamar a la lógica para eliminar
+                    MessageBox.Show("Administrador eliminado exitosamente.", "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LimpiarCampos(); // Limpiar los campos
+                }
+                else
+                {
+                    MessageBox.Show("Ingrese un ID válido para eliminar.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             catch (Exception ex)
             {
@@ -124,16 +148,19 @@ namespace _45GAMES4U_Inventario.Presentacion
             }
         }
 
+        // Evento para limpiar los campos del formulario
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
 
+        // Evento para cerrar el formulario
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        // Método para limpiar los campos del formulario
         private void LimpiarCampos()
         {
             txtIdAdministrador.Clear();
@@ -141,12 +168,8 @@ namespace _45GAMES4U_Inventario.Presentacion
             txtApellido.Clear();
             txtTelefono.Clear();
             txtCorreo.Clear();
-            txtIdAdministrador.Focus();
-        }
-
-        private void FormAdministrador_Load(object sender, EventArgs e)
-        {
-            CargarComboTienda();
+            cmbTienda.SelectedIndex = -1; // Restablecer la selección del ComboBox
+            txtIdAdministrador.Focus(); // Enfocar en el campo de ID
         }
     }
 }
