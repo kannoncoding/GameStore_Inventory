@@ -46,13 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoDatos\AdministradorDatos.cs" />
-    <Compile Include="AccesoDatos\ClienteDatos.cs" />
     <Compile Include="AccesoDatos\DatosInventario.cs" />
-    <Compile Include="AccesoDatos\TiendaDatos.cs" />
-    <Compile Include="AccesoDatos\TipoVideojuegoDatos.cs" />
-    <Compile Include="AccesoDatos\VideojuegoDatos.cs" />
-    <Compile Include="AccesoDatos\VideojuegosXTiendaDatos.cs" />
     <Compile Include="Entidad\AdministradorEntidad.cs" />
     <Compile Include="Entidad\ClienteEntidad.cs" />
     <Compile Include="Entidad\PersonaEntidad.cs" />
