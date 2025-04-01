@@ -10,9 +10,9 @@ using System.Windows.Forms;
 // Jorge Luis Arias Melendez
 // 1er Cuatrimestre 2025
 
-using _45GAMES4U_Inventario.Presentacion;
+using GameStore_Inventory.Presentacion;
 
-namespace _45GAMES4U_Inventario
+namespace GameStore_Inventory
 {
     internal static class Program
     {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Clase base para representar una persona.
 
-namespace _45GAMES4U_Inventario.Entidad
+namespace GameStore_Inventory.Entidad
 {
     public class PersonaEntidad
     {

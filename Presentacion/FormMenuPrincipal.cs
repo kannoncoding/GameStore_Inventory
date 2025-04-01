@@ -16,7 +16,7 @@ using System.Windows.Forms;
 // Formulario de menú principal que permite acceder a cada formulario del sistema.
 
 
-namespace _45GAMES4U_Inventario.Presentacion
+namespace GameStore_Inventory.Presentacion
 {
     public partial class FormMenuPrincipal : Form
     {

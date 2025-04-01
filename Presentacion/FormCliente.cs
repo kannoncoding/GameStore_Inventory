@@ -15,10 +15,10 @@ using System.Windows.Forms;
 // 1er Cuatrimestre
 // Formulario para gestionar Clientes
 
-using _45GAMES4U_Inventario.Entidad;
-using _45GAMES4U_Inventario.LogicaNegocio;
+using GameStore_Inventory.Entidad;
+using GameStore_Inventory.LogicaNegocio;
 
-namespace _45GAMES4U_Inventario.Presentacion
+namespace GameStore_Inventory.Presentacion
 {
     public partial class FormCliente : Form
     {

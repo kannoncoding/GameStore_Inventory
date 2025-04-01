@@ -1,4 +1,4 @@
-# _45GAMES4U_Inventario
+# GameStore_Inventory
 
 Aplicación de escritorio para la gestión de inventario de varias tiendas de videojuegos.
 

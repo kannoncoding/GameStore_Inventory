@@ -1,4 +1,4 @@
-﻿namespace _45GAMES4U_Inventario.Presentacion
+﻿namespace GameStore_Inventory.Presentacion
 {
     partial class FormTipoVideojuego
     {

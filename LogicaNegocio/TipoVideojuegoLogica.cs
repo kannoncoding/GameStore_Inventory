@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Capa lógica para manejar tipos de videojuegos.
 
-using _45GAMES4U_Inventario.Entidad;
-using _45GAMES4U_Inventario.AccesoDatos;
+using GameStore_Inventory.Entidad;
+using GameStore_Inventory.AccesoDatos;
 
-namespace _45GAMES4U_Inventario.LogicaNegocio
+namespace GameStore_Inventory.LogicaNegocio
 {
     public class TipoVideojuegoLogica
     {
