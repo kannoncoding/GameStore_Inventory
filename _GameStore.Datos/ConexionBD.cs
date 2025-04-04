@@ -7,7 +7,7 @@
 
 
 using System;
-using Microsoft.Data.SqlClient; // <- Librería correcta actualizada
+using Microsoft.Data.SqlClient;
 
 namespace _GameStore.Datos
 {
