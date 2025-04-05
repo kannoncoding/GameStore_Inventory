@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 // Capa lógica para manejar administradores.
 
 using _GameStore.Entidades;
-using _GameStore.AccesoDatos;
+using _GameStore.Datos;
 
 namespace _GameStore.Logica
 {

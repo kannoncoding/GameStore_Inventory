@@ -13,7 +13,7 @@ using _GameStore.Entidades;
 // 1er Cuatrimestre
 // Descripción: Clase estática para almacenar arreglos de entidades compartidos en toda la aplicación.
 
-namespace _GameStore.AccesoDatos
+namespace _GameStore.Datos
 {
     public static class DatosInventario
     {
