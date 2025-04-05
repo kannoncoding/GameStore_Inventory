@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Clase que representa la relación entre tiendas y videojuegos (Inventario).
 
-namespace GameStore_Inventory.Entidad
+namespace _GameStore.Entidades
 {
     public class VideojuegosXTiendaEntidad
     {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Clase que representa a un cliente, heredando de PersonaEntidad.
 
-namespace GameStore_Inventory.Entidad
+namespace _GameStore.Entidades
 {
     public class ClienteEntidad : PersonaEntidad
     {

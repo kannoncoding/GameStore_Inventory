@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Clase de entidad para representar un videojuego.
 
-namespace GameStore_Inventory.Entidad
+namespace _GameStore.Entidades
 {
     public class VideojuegoEntidad
     {

@@ -12,10 +12,9 @@ namespace _GameStore.Datos
 {
     public class ConexionBD
     {
-        private readonly string cadenaConexion =
-            "Server=KANNONDESKPC\\SQLEXPRESS;Database=BD_GameStore;Trusted_Connection=True;TrustServerCertificate=True;";
+        private static string cadenaConexion = "Server=KANNONDESKPC\\SQLEXPRESS;Database=BD_GameStore;Trusted_Connection=True;TrustServerCertificate=True;";
 
-        public SqlConnection ObtenerConexion()
+        public static SqlConnection ObtenerConexion()
         {
             try
             {

@@ -1,4 +1,4 @@
-﻿namespace GameStore_Inventory.Presentacion
+﻿namespace _GameStore.Presentacion
 {
     partial class FormAdministrador
     {

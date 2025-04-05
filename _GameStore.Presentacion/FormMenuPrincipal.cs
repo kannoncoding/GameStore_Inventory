@@ -18,7 +18,7 @@ using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using _GameStore.Datos;
 
-namespace GameStore_Inventory.Presentacion
+namespace _GameStore.Presentacion
 {
     public partial class FormMenuPrincipal : Form
     {

@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Capa lógica para manejar videojuegos.
 
-using GameStore_Inventory.Entidad;
-using GameStore_Inventory.AccesoDatos;
+using _GameStore.Entidades;
+using _GameStore.AccesoDatos;
 
-namespace GameStore_Inventory.LogicaNegocio
+namespace _GameStore.Logica
 {
     public class VideojuegoLogica
     {

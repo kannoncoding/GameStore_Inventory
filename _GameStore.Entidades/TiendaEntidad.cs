@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 // 1er Cuatrimestre 2025
 // Clase que representa una tienda dentro de la cadena de videojuegos.
 
-namespace GameStore_Inventory.Entidad
+namespace _GameStore.Entidades
 {
     public class TiendaEntidad
     {

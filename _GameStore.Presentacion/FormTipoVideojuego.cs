@@ -15,10 +15,10 @@ using System.Windows.Forms;
 // 1er Cuatrimestre
 // Formulario para gestionar los Tipos de Videojuegos
 
-using GameStore_Inventory.Entidad;
-using GameStore_Inventory.LogicaNegocio;
+using _GameStore.Entidades;
+using _GameStore.Logica;
 
-namespace GameStore_Inventory.Presentacion
+namespace _GameStore.Presentacion
 {
     public partial class FormTipoVideojuego : Form
     {

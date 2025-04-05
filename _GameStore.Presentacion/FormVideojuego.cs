@@ -16,10 +16,10 @@ using System.Windows.Forms;
 // Formulario para gestionar Videojuegos con Clasificación por Edad
 
 
-using GameStore_Inventory.Entidad;
-using GameStore_Inventory.LogicaNegocio;
+using _GameStore.Entidades;
+using _GameStore.Logica;
 
-namespace GameStore_Inventory.Presentacion
+namespace _GameStore.Presentacion
 {
     public partial class FormVideojuego : Form
     {

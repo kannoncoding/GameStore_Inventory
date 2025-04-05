@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameStore_Inventory.Entidad;
+using _GameStore.Entidades;
 
 
 // UNED
@@ -13,7 +13,7 @@ using GameStore_Inventory.Entidad;
 // 1er Cuatrimestre
 // Descripción: Clase estática para almacenar arreglos de entidades compartidos en toda la aplicación.
 
-namespace GameStore_Inventory.AccesoDatos
+namespace _GameStore.AccesoDatos
 {
     public static class DatosInventario
     {
