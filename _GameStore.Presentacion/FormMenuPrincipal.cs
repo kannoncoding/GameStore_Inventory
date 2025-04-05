@@ -79,19 +79,7 @@ namespace _GameStore.Presentacion
 
         private void FormMenuPrincipal_Load(object sender, EventArgs e)
         {
-            try
-            {
-                using (SqlConnection conexion = new SqlConnection(
-                    "Server=KANNONDESKPC\\SQLEXPRESS;Database=BD_GameStore;Trusted_Connection=True;TrustServerCertificate=True;"))
-                {
-                    conexion.Open();
-                    MessageBox.Show("✅ Conectado a la base 'BD_GameStore' correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"❌ Error al conectar con el servidor SQL: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
 
         }
     }

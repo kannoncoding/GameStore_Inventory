@@ -19,10 +19,10 @@ namespace _GameStore.Entidades
         public int IdTipoVideojuego { get; set; }
 
         // Nombre del tipo de videojuego (Ejemplo: Acción, RPG, Aventura)
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty;
 
         // Descripción opcional del tipo de videojuego
-        public string Descripcion { get; set; }
+        public string Descripcion { get; set; } = string.Empty;
 
         // Constructor sin parámetros
         public TipoVideojuegoEntidad() { }

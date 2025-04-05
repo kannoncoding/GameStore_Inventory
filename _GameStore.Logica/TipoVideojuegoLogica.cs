@@ -21,61 +21,52 @@ namespace _GameStore.Logica
         // Método para agregar un nuevo tipo de videojuego con validaciones
         public string AgregarTipoVideojuego(TipoVideojuegoEntidad tipo)
         {
-            // Validar que el nombre no esté vacío
+            // Validaciones de negocio
             if (string.IsNullOrWhiteSpace(tipo.Nombre))
-            {
                 return "El nombre del tipo de videojuego no puede estar vacío.";
-            }
 
-            // Validar que la descripción no esté vacía
             if (string.IsNullOrWhiteSpace(tipo.Descripcion))
-            {
                 return "La descripción del tipo de videojuego no puede estar vacía.";
-            }
 
-            // Validar si el ID ya existe
-            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
+            try
             {
-                if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == tipo.IdTipoVideojuego)
+                TipoVideojuegoDatos datos = new TipoVideojuegoDatos();
+
+                // Validar si ya existe por ID
+                var existente = BuscarTipoPorId(tipo.IdTipoVideojuego);
+                if (existente != null)
                 {
                     return "Ya existe un tipo de videojuego con este ID.";
                 }
-            }
 
-            // Validar si el Nombre ya existe (sin distinguir mayúsculas y minúsculas)
-            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
-            {
-                if (DatosInventario.tiposVideojuegos[i].Nombre.Equals(tipo.Nombre, StringComparison.OrdinalIgnoreCase))
+                // Validar si ya existe por nombre
+                var lista = datos.ObtenerTodos();
+                bool nombreDuplicado = lista.Any(t => t.Nombre.Equals(tipo.Nombre, StringComparison.OrdinalIgnoreCase));
+                if (nombreDuplicado)
                 {
                     return "Ya existe un tipo de videojuego con este nombre.";
                 }
-            }
 
-            // Verificar si hay espacio en el arreglo
-            if (DatosInventario.contadorTiposVideojuegos < DatosInventario.tiposVideojuegos.Length)
-            {
-                DatosInventario.tiposVideojuegos[DatosInventario.contadorTiposVideojuegos] = tipo;
-                DatosInventario.contadorTiposVideojuegos++;
-                return "El tipo de videojuego se ha registrado correctamente.";
+                // Insertar en la base de datos
+                bool exito = datos.Agregar(tipo);
+                return exito
+                    ? "El tipo de videojuego se ha registrado correctamente."
+                    : "No se pudo registrar el tipo de videojuego.";
             }
-            else
+            catch (Exception ex)
             {
-                return "No se pueden ingresar más registros.";
+                return "Error al registrar en la base de datos: " + ex.Message;
             }
         }
+
 
         // Método para buscar un tipo por ID
-        public TipoVideojuegoEntidad BuscarTipoPorId(int id)
+        public TipoVideojuegoEntidad? BuscarTipoPorId(int id)
         {
-            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
-            {
-                if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == id)
-                {
-                    return DatosInventario.tiposVideojuegos[i];
-                }
-            }
-            return null;
+            TipoVideojuegoDatos datos = new TipoVideojuegoDatos();
+            return datos.BuscarPorId(id);
         }
+
 
         // Método para obtener todos los tipos
         public TipoVideojuegoEntidad[] ObtenerTodosTipos()

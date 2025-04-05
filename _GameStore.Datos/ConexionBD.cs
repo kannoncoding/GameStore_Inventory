@@ -12,24 +12,10 @@ namespace _GameStore.Datos
 {
     public class ConexionBD
     {
-        private static string cadenaConexion = "Server=KANNONDESKPC\\SQLEXPRESS;Database=BD_GameStore;Trusted_Connection=True;TrustServerCertificate=True;";
-
         public static SqlConnection ObtenerConexion()
         {
-            try
-            {
-                SqlConnection conexion = new SqlConnection(cadenaConexion);
-                conexion.Open();
-                return conexion;
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception("Error al establecer la conexión con la base de datos BD_GameStore.", ex);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Ocurrió un error inesperado al establecer la conexión con la base de datos.", ex);
-            }
+            string cadena = "Server=KANNONDESKPC\\SQLEXPRESS;Database=BD_GameStore;Trusted_Connection=True;TrustServerCertificate=True;";
+            return new SqlConnection(cadena);
         }
     }
 }

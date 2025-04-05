@@ -23,9 +23,9 @@ namespace _GameStore.Datos
         {
             using (SqlConnection conn = ConexionBD.ObtenerConexion())
             {
-                string sql = "INSERT INTO TipoVideojuego (Id, Nombre, Descripcion) VALUES (@Id, @Nombre, @Descripcion)";
+                string sql = "INSERT INTO TipoVideojuego (IdTipoVideojuego, Nombre, Descripcion) VALUES (@IdTipoVideojuego, @Nombre, @Descripcion)";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Id", tipo.IdTipoVideojuego);
+                cmd.Parameters.AddWithValue("@IdTipoVideojuego", tipo.IdTipoVideojuego);
                 cmd.Parameters.AddWithValue("@Nombre", tipo.Nombre);
                 cmd.Parameters.AddWithValue("@Descripcion", tipo.Descripcion);
 
@@ -48,7 +48,7 @@ namespace _GameStore.Datos
 
             using (SqlConnection conn = ConexionBD.ObtenerConexion())
             {
-                string sql = "SELECT Id, Nombre, Descripcion FROM TipoVideojuego";
+                string sql = "SELECT IdTipoVideojuego, Nombre, Descripcion FROM TipoVideojuego";
                 SqlCommand cmd = new SqlCommand(sql, conn);
 
                 try
@@ -75,15 +75,15 @@ namespace _GameStore.Datos
             return lista;
         }
 
-        public TipoVideojuegoEntidad BuscarPorId(string id)
+        public TipoVideojuegoEntidad BuscarPorId(int id)
         {
             TipoVideojuegoEntidad tipo = null;
 
             using (SqlConnection conn = ConexionBD.ObtenerConexion())
             {
-                string sql = "SELECT Id, Nombre, Descripcion FROM TipoVideojuego WHERE Id = @Id";
+                string sql = "SELECT IdTipoVideojuego, Nombre, Descripcion FROM TipoVideojuego WHERE IdTipoVideojuego = @IdTipoVideojuego";
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@IdTipoVideojuego", id);
 
                 try
                 {
@@ -93,7 +93,7 @@ namespace _GameStore.Datos
                     {
                         tipo = new TipoVideojuegoEntidad
                         {
-                            IdTipoVideojuego = Convert.ToInt32(reader["Id"]),
+                            IdTipoVideojuego = Convert.ToInt32(reader["IdTipoVideojuego"]),
                             Nombre = reader["Nombre"].ToString(),
                             Descripcion = reader["Descripcion"].ToString()
                         };
@@ -108,6 +108,7 @@ namespace _GameStore.Datos
 
             return tipo;
         }
+
 
         public bool Actualizar(TipoVideojuegoEntidad tipo)
         {
