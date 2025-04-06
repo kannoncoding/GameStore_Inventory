@@ -69,11 +69,35 @@ namespace _GameStore.Logica
 
 
         // Método para obtener todos los tipos
-        public TipoVideojuegoEntidad[] ObtenerTodosTipos()
+        public List<TipoVideojuegoEntidad> ObtenerTodosTipos()
         {
-            TipoVideojuegoEntidad[] tipos = new TipoVideojuegoEntidad[DatosInventario.contadorTiposVideojuegos];
-            Array.Copy(DatosInventario.tiposVideojuegos, tipos, DatosInventario.contadorTiposVideojuegos);
-            return tipos;
+            TipoVideojuegoDatos datos = new TipoVideojuegoDatos();
+            return datos.ObtenerTodos();
         }
+
+        // Método para eliminar un Tipo por selección
+        public string EliminarTipoPorId(int id)
+        {
+            try
+            {
+                TipoVideojuegoDatos datos = new TipoVideojuegoDatos();
+                var existente = datos.BuscarPorId(id);
+                if (existente == null)
+                {
+                    return "No se encontró un tipo de videojuego con ese ID.";
+                }
+
+                bool exito = datos.Eliminar(id);
+                return exito
+                    ? "El tipo de videojuego se ha eliminado correctamente."
+                    : "No se pudo eliminar el tipo de videojuego.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al eliminar el tipo de videojuego: " + ex.Message;
+            }
+        }
+
+
     }
 }

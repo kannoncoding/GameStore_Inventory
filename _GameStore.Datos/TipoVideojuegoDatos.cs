@@ -59,7 +59,7 @@ namespace _GameStore.Datos
                     {
                         lista.Add(new TipoVideojuegoEntidad
                         {
-                            IdTipoVideojuego = Convert.ToInt32(reader["Id"]),
+                            IdTipoVideojuego = Convert.ToInt32(reader["IdTipoVideojuego"]),
                             Nombre = reader["Nombre"].ToString(),
                             Descripcion = reader["Descripcion"].ToString()
                         });
@@ -133,11 +133,11 @@ namespace _GameStore.Datos
             }
         }
 
-        public bool Eliminar(string id)
+        public bool Eliminar(int id)
         {
             using (SqlConnection conn = ConexionBD.ObtenerConexion())
             {
-                string sql = "DELETE FROM TipoVideojuego WHERE Id = @Id";
+                string sql = "DELETE FROM TipoVideojuego WHERE IdTipoVideojuego = @Id";
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Id", id);
 
@@ -153,5 +153,6 @@ namespace _GameStore.Datos
                 }
             }
         }
+
     }
 }

@@ -28,151 +28,187 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtCodigoTipo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.dgvTiposVideojuego = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNombreTipo = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTiposVideojuego)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            txtCodigoTipo = new TextBox();
+            label2 = new Label();
+            txtDescripcion = new TextBox();
+            btnConsultar = new Button();
+            btnRegistrar = new Button();
+            btnLimpiar = new Button();
+            btnSalir = new Button();
+            btnEliminar = new Button();
+            dgvTiposVideojuego = new DataGridView();
+            label3 = new Label();
+            txtNombreTipo = new TextBox();
+            btnActualizar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvTiposVideojuego).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 53);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Código Tipo de Videojuego";
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 61);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(152, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Código Tipo de Videojuego";
             // 
             // txtCodigoTipo
             // 
-            this.txtCodigoTipo.CausesValidation = false;
-            this.txtCodigoTipo.Location = new System.Drawing.Point(12, 69);
-            this.txtCodigoTipo.Name = "txtCodigoTipo";
-            this.txtCodigoTipo.Size = new System.Drawing.Size(301, 20);
-            this.txtCodigoTipo.TabIndex = 1;
+            txtCodigoTipo.CausesValidation = false;
+            txtCodigoTipo.Location = new Point(14, 80);
+            txtCodigoTipo.Margin = new Padding(4, 3, 4, 3);
+            txtCodigoTipo.Name = "txtCodigoTipo";
+            txtCodigoTipo.Size = new Size(350, 23);
+            txtCodigoTipo.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Descripción del Tipo";
+            label2.AutoSize = true;
+            label2.Location = new Point(10, 106);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Descripción del Tipo";
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(12, 108);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(304, 38);
-            this.txtDescripcion.TabIndex = 3;
+            txtDescripcion.Location = new Point(14, 125);
+            txtDescripcion.Margin = new Padding(4, 3, 4, 3);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(354, 43);
+            txtDescripcion.TabIndex = 3;
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(12, 490);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 4;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            btnConsultar.Location = new Point(14, 565);
+            btnConsultar.Margin = new Padding(4, 3, 4, 3);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(88, 27);
+            btnConsultar.TabIndex = 4;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(501, 490);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 5;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            btnRegistrar.Location = new Point(584, 565);
+            btnRegistrar.Margin = new Padding(4, 3, 4, 3);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(88, 27);
+            btnRegistrar.TabIndex = 5;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 586);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 6;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            btnLimpiar.Location = new Point(14, 676);
+            btnLimpiar.Margin = new Padding(4, 3, 4, 3);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(88, 27);
+            btnLimpiar.TabIndex = 6;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(501, 586);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 7;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            btnSalir.Location = new Point(584, 676);
+            btnSalir.Margin = new Padding(4, 3, 4, 3);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(88, 27);
+            btnSalir.TabIndex = 7;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(293, 676);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.TabIndex = 11;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // dgvTiposVideojuego
             // 
-            this.dgvTiposVideojuego.AllowUserToAddRows = false;
-            this.dgvTiposVideojuego.AllowUserToDeleteRows = false;
-            this.dgvTiposVideojuego.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTiposVideojuego.Location = new System.Drawing.Point(12, 152);
-            this.dgvTiposVideojuego.Name = "dgvTiposVideojuego";
-            this.dgvTiposVideojuego.ReadOnly = true;
-            this.dgvTiposVideojuego.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiposVideojuego.Size = new System.Drawing.Size(564, 332);
-            this.dgvTiposVideojuego.TabIndex = 8;
+            dgvTiposVideojuego.AllowUserToAddRows = false;
+            dgvTiposVideojuego.AllowUserToDeleteRows = false;
+            dgvTiposVideojuego.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTiposVideojuego.Location = new Point(14, 175);
+            dgvTiposVideojuego.Margin = new Padding(4, 3, 4, 3);
+            dgvTiposVideojuego.Name = "dgvTiposVideojuego";
+            dgvTiposVideojuego.ReadOnly = true;
+            dgvTiposVideojuego.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTiposVideojuego.Size = new Size(658, 383);
+            dgvTiposVideojuego.TabIndex = 8;
+            dgvTiposVideojuego.CellDoubleClick += dgvTiposVideojuego_CellDoubleClick;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 13);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(156, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Nombre del Tipo de Videojuego";
+            label3.AutoSize = true;
+            label3.Location = new Point(14, 15);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(176, 15);
+            label3.TabIndex = 9;
+            label3.Text = "Nombre del Tipo de Videojuego";
             // 
             // txtNombreTipo
             // 
-            this.txtNombreTipo.Location = new System.Drawing.Point(12, 30);
-            this.txtNombreTipo.Name = "txtNombreTipo";
-            this.txtNombreTipo.Size = new System.Drawing.Size(304, 20);
-            this.txtNombreTipo.TabIndex = 10;
-            this.txtNombreTipo.Enter += new System.EventHandler(this.FormTipoVideojuego_Load);
+            txtNombreTipo.Location = new Point(14, 35);
+            txtNombreTipo.Margin = new Padding(4, 3, 4, 3);
+            txtNombreTipo.Name = "txtNombreTipo";
+            txtNombreTipo.Size = new Size(354, 23);
+            txtNombreTipo.TabIndex = 10;
+            txtNombreTipo.Enter += FormTipoVideojuego_Load;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.Location = new Point(293, 567);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(75, 23);
+            btnActualizar.TabIndex = 12;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = true;
             // 
             // FormTipoVideojuego
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(588, 621);
-            this.Controls.Add(this.txtNombreTipo);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dgvTiposVideojuego);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.btnConsultar);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtCodigoTipo);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "FormTipoVideojuego";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Administrar Tipos de Videojuegos\n";
-            this.Activated += new System.EventHandler(this.FormTipoVideojuego_Load);
-            this.Load += new System.EventHandler(this.FormTipoVideojuego_Load);
-            this.Enter += new System.EventHandler(this.FormTipoVideojuego_Load);
-            this.Validated += new System.EventHandler(this.FormTipoVideojuego_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTiposVideojuego)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(686, 717);
+            Controls.Add(btnActualizar);
+            Controls.Add(btnEliminar);
+            Controls.Add(txtNombreTipo);
+            Controls.Add(label3);
+            Controls.Add(dgvTiposVideojuego);
+            Controls.Add(btnSalir);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnRegistrar);
+            Controls.Add(btnConsultar);
+            Controls.Add(txtDescripcion);
+            Controls.Add(label2);
+            Controls.Add(txtCodigoTipo);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "FormTipoVideojuego";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Administrar Tipos de Videojuegos\n";
+            Activated += FormTipoVideojuego_Load;
+            Load += FormTipoVideojuego_Load;
+            Enter += FormTipoVideojuego_Load;
+            Validated += FormTipoVideojuego_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvTiposVideojuego).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -184,10 +220,13 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvTiposVideojuego;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNombreTipo;
+        
     }
 }

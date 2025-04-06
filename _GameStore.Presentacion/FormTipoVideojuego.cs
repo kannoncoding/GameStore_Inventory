@@ -77,6 +77,41 @@ namespace _GameStore.Presentacion
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgvTiposVideojuego.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Por favor, seleccione un tipo de videojuego para eliminar.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Obtener el ID desde la fila seleccionada
+                int id = Convert.ToInt32(dgvTiposVideojuego.SelectedRows[0].Cells["IdTipoVideojuego"].Value);
+
+                // Confirmación con el usuario
+                DialogResult respuesta = MessageBox.Show("¿Está seguro que desea eliminar este tipo de videojuego?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (respuesta != DialogResult.Yes)
+                {
+                    return;
+                }
+
+                // Llamar a la lógica para eliminar
+                string mensaje = tipoLogica.EliminarTipoPorId(id);
+                MessageBox.Show(mensaje, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Actualizar la tabla si se eliminó correctamente
+                if (mensaje.Contains("eliminado correctamente"))
+                {
+                    dgvTiposVideojuego.DataSource = tipoLogica.ObtenerTodosTipos();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al intentar eliminar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
@@ -96,9 +131,24 @@ namespace _GameStore.Presentacion
             txtNombreTipo.Focus();
         }
 
+        private void dgvTiposVideojuego_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Asegurarse que no sea header
+            {
+                DataGridViewRow fila = dgvTiposVideojuego.Rows[e.RowIndex];
+
+                txtCodigoTipo.Text = fila.Cells["IdTipoVideojuego"].Value.ToString();
+                txtNombreTipo.Text = fila.Cells["Nombre"].Value.ToString();
+                txtDescripcion.Text = fila.Cells["Descripcion"].Value.ToString();
+            }
+        }
+
+
         private void FormTipoVideojuego_Load(object sender, EventArgs e)
         {
             txtNombreTipo.Focus();
         }
+
+        
     }
 }
