@@ -18,117 +18,101 @@ namespace _GameStore.Logica
 {
     public class AdministradorLogica
     {
-        // Método para agregar nuevo administrador con validaciones
+        private readonly AdministradorDatos datos = new AdministradorDatos();
+        private readonly TiendaDatos tiendaDatos = new TiendaDatos();
+
         public string AgregarAdministrador(AdministradorEntidad admin)
         {
-            // Validar duplicado por ID
-            for (int i = 0; i < DatosInventario.contadorAdministradores; i++)
-            {
-                if (DatosInventario.administradores[i].IdAdministrador == admin.IdAdministrador)
-                {
-                    return "Ya existe un administrador registrado con este ID.";
-                }
-
-                if (DatosInventario.administradores[i].Identificacion == admin.Identificacion)
-                {
-                    return "Ya existe un administrador registrado con esta identificación.";
-                }
-            }
-
             if (string.IsNullOrWhiteSpace(admin.Identificacion))
-            {
                 return "La identificación es obligatoria.";
-            }
 
             if (string.IsNullOrWhiteSpace(admin.Nombre) || string.IsNullOrWhiteSpace(admin.Apellido))
-            {
                 return "Nombre y apellido son obligatorios.";
-            }
 
             if (string.IsNullOrWhiteSpace(admin.Correo))
-            {
                 return "El correo electrónico es obligatorio.";
-            }
 
-            // Verificar si la tienda asignada existe
-            TiendaEntidad tienda = null;
-            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
-            {
-                if (DatosInventario.tiendas[i].IdTienda == admin.IdTienda)
-                {
-                    tienda = DatosInventario.tiendas[i];
-                    break;
-                }
-            }
+            // Validar duplicado por ID o Identificación
+            var lista = datos.ObtenerTodos();
+            if (lista.Any(a => a.IdAdministrador == admin.IdAdministrador))
+                return "Ya existe un administrador registrado con este ID.";
 
+            if (lista.Any(a => a.Identificacion == admin.Identificacion))
+                return "Ya existe un administrador registrado con esta identificación.";
+
+            // Verificar si la tienda existe
+            var tienda = tiendaDatos.BuscarPorId(admin.IdTienda);
             if (tienda == null)
-            {
                 return "La tienda seleccionada no existe.";
-            }
 
-            // Verificar si la tienda ya tiene un administrador asignado
-            if (tienda.IdAdministrador != 0)
-            {
+            // Validar si la tienda ya tiene administrador
+            var todos = datos.ObtenerTodos();
+            if (todos.Any(a => a.IdTienda == admin.IdTienda))
                 return "Esta tienda ya tiene un administrador asignado.";
-            }
 
-            if (DatosInventario.contadorAdministradores < DatosInventario.administradores.Length)
-            {
-                DatosInventario.administradores[DatosInventario.contadorAdministradores] = admin;
-                DatosInventario.contadorAdministradores++;
+            bool exito = datos.Agregar(admin);
 
-                // **Asignar el administrador a la tienda**
-                tienda.IdAdministrador = admin.IdAdministrador;
-
-                return "El administrador se ha registrado correctamente y se ha asignado a la tienda.";
-            }
-            else
-            {
-                return "No se pueden ingresar más registros.";
-            }
+            return exito
+                ? "El administrador se ha registrado correctamente y se ha asignado a la tienda."
+                : "No se pudo registrar el administrador.";
         }
 
-        // Método para eliminar un administrador por ID
+        public string ActualizarAdministrador(AdministradorEntidad admin)
+        {
+            if (string.IsNullOrWhiteSpace(admin.Identificacion))
+                return "La identificación es obligatoria.";
+
+            if (string.IsNullOrWhiteSpace(admin.Nombre) || string.IsNullOrWhiteSpace(admin.Apellido))
+                return "Nombre y apellido son obligatorios.";
+
+            if (string.IsNullOrWhiteSpace(admin.Correo))
+                return "El correo electrónico es obligatorio.";
+
+            var existente = datos.BuscarPorId(admin.IdAdministrador);
+            if (existente == null)
+                return "El administrador no existe.";
+
+            // Validar si se quiere reasignar a una tienda ya ocupada por otro admin
+            var otrosAdmins = datos.ObtenerTodos()
+                                   .Where(a => a.IdAdministrador != admin.IdAdministrador)
+                                   .ToList();
+
+            if (otrosAdmins.Any(a => a.IdTienda == admin.IdTienda))
+                return "Otra tienda ya tiene un administrador asignado.";
+
+            bool exito = datos.Actualizar(admin);
+
+            return exito
+                ? "El administrador se ha actualizado correctamente."
+                : "No se pudo actualizar el administrador.";
+        }
+
         public string EliminarAdministrador(int id)
         {
-            for (int i = 0; i < DatosInventario.contadorAdministradores; i++)
-            {
-                if (DatosInventario.administradores[i].IdAdministrador == id)
-                {
-                    // Eliminar desplazando hacia atrás
-                    for (int j = i; j < DatosInventario.contadorAdministradores - 1; j++)
-                    {
-                        DatosInventario.administradores[j] = DatosInventario.administradores[j + 1];
-                    }
+            var existente = datos.BuscarPorId(id);
+            if (existente == null)
+                return "El administrador con el ID especificado no existe.";
 
-                    DatosInventario.administradores[DatosInventario.contadorAdministradores - 1] = null;
-                    DatosInventario.contadorAdministradores--;
-                    return "El administrador ha sido eliminado correctamente.";
-                }
-            }
-            return "El administrador con el ID especificado no existe.";
+            bool exito = datos.Eliminar(id);
+
+            return exito
+                ? "El administrador ha sido eliminado correctamente."
+                : "No se pudo eliminar el administrador.";
         }
 
-        // Método para buscar administrador por ID
         public AdministradorEntidad BuscarAdministradorPorId(int id)
         {
-            return DatosInventario.administradores
-                .FirstOrDefault(a => a != null && a.IdAdministrador == id);
+            return datos.BuscarPorId(id);
         }
 
-        // Método para obtener todos los administradores registrados
-        public AdministradorEntidad[] ObtenerTodosAdministradores()
+        public List<AdministradorEntidad> ObtenerTodosLosAdministradores()
         {
-            AdministradorEntidad[] lista = new AdministradorEntidad[DatosInventario.contadorAdministradores];
-            Array.Copy(DatosInventario.administradores, lista, DatosInventario.contadorAdministradores);
-            return lista;
+            return datos.ObtenerTodos();
         }
 
-        // Método adicional para buscar por identificación personal
         public AdministradorEntidad BuscarPorIdentificacion(string identificacion)
         {
-            return DatosInventario.administradores
-                .FirstOrDefault(a => a != null && a.Identificacion == identificacion);
+            return datos.ObtenerTodos().FirstOrDefault(a => a.Identificacion == identificacion);
         }
     }
 }

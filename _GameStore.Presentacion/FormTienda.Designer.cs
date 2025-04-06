@@ -28,177 +28,205 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtIdTienda = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNombreTienda = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtTelefono = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
-            this.dgvTiendas = new System.Windows.Forms.DataGridView();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTiendas)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            txtIdTienda = new TextBox();
+            label2 = new Label();
+            txtNombreTienda = new TextBox();
+            label3 = new Label();
+            txtTelefono = new TextBox();
+            label4 = new Label();
+            txtDireccion = new TextBox();
+            dgvTiendas = new DataGridView();
+            btnConsultar = new Button();
+            btnRegistrar = new Button();
+            btnEliminar = new Button();
+            btnLimpiar = new Button();
+            btnSalir = new Button();
+            btnActualizar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvTiendas).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Código Tienda";
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 15);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(85, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Código Tienda";
             // 
             // txtIdTienda
             // 
-            this.txtIdTienda.Location = new System.Drawing.Point(16, 30);
-            this.txtIdTienda.Name = "txtIdTienda";
-            this.txtIdTienda.Size = new System.Drawing.Size(176, 20);
-            this.txtIdTienda.TabIndex = 1;
+            txtIdTienda.Location = new Point(19, 35);
+            txtIdTienda.Margin = new Padding(4, 3, 4, 3);
+            txtIdTienda.Name = "txtIdTienda";
+            txtIdTienda.Size = new Size(205, 23);
+            txtIdTienda.TabIndex = 1;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(199, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(80, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nombre Tienda";
+            label2.AutoSize = true;
+            label2.Location = new Point(232, 15);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(90, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Nombre Tienda";
             // 
             // txtNombreTienda
             // 
-            this.txtNombreTienda.Location = new System.Drawing.Point(199, 30);
-            this.txtNombreTienda.Name = "txtNombreTienda";
-            this.txtNombreTienda.Size = new System.Drawing.Size(325, 20);
-            this.txtNombreTienda.TabIndex = 3;
+            txtNombreTienda.Location = new Point(232, 35);
+            txtNombreTienda.Margin = new Padding(4, 3, 4, 3);
+            txtNombreTienda.Name = "txtNombreTienda";
+            txtNombreTienda.Size = new Size(378, 23);
+            txtNombreTienda.TabIndex = 3;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(628, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Teléfono";
+            label3.AutoSize = true;
+            label3.Location = new Point(733, 10);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(53, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Teléfono";
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(530, 30);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(146, 20);
-            this.txtTelefono.TabIndex = 5;
+            txtTelefono.Location = new Point(618, 35);
+            txtTelefono.Margin = new Padding(4, 3, 4, 3);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(170, 23);
+            txtTelefono.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 57);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Dirección";
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 66);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(57, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Dirección";
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(16, 74);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(660, 20);
-            this.txtDireccion.TabIndex = 7;
+            txtDireccion.Location = new Point(19, 85);
+            txtDireccion.Margin = new Padding(4, 3, 4, 3);
+            txtDireccion.Name = "txtDireccion";
+            txtDireccion.Size = new Size(769, 23);
+            txtDireccion.TabIndex = 7;
             // 
             // dgvTiendas
             // 
-            this.dgvTiendas.AllowUserToAddRows = false;
-            this.dgvTiendas.AllowUserToDeleteRows = false;
-            this.dgvTiendas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTiendas.Location = new System.Drawing.Point(13, 101);
-            this.dgvTiendas.Name = "dgvTiendas";
-            this.dgvTiendas.ReadOnly = true;
-            this.dgvTiendas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiendas.Size = new System.Drawing.Size(664, 253);
-            this.dgvTiendas.TabIndex = 8;
+            dgvTiendas.AllowUserToAddRows = false;
+            dgvTiendas.AllowUserToDeleteRows = false;
+            dgvTiendas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvTiendas.Location = new Point(15, 117);
+            dgvTiendas.Margin = new Padding(4, 3, 4, 3);
+            dgvTiendas.Name = "dgvTiendas";
+            dgvTiendas.ReadOnly = true;
+            dgvTiendas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTiendas.Size = new Size(775, 292);
+            dgvTiendas.TabIndex = 8;
+            dgvTiendas.CellDoubleClick += dgvTiendas_CellDoubleClick;
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(13, 361);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 9;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            btnConsultar.Location = new Point(15, 417);
+            btnConsultar.Margin = new Padding(4, 3, 4, 3);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(88, 27);
+            btnConsultar.TabIndex = 9;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(602, 361);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 10;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            btnRegistrar.Location = new Point(702, 417);
+            btnRegistrar.Margin = new Padding(4, 3, 4, 3);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(88, 27);
+            btnRegistrar.TabIndex = 10;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(298, 361);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 11;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            btnEliminar.Location = new Point(348, 417);
+            btnEliminar.Margin = new Padding(4, 3, 4, 3);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(88, 27);
+            btnEliminar.TabIndex = 11;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(13, 415);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 12;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            btnLimpiar.Location = new Point(15, 479);
+            btnLimpiar.Margin = new Padding(4, 3, 4, 3);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(88, 27);
+            btnLimpiar.TabIndex = 12;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(602, 415);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 13;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            btnSalir.Location = new Point(702, 479);
+            btnSalir.Margin = new Padding(4, 3, 4, 3);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(88, 27);
+            btnSalir.TabIndex = 13;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.Location = new Point(348, 479);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(88, 23);
+            btnActualizar.TabIndex = 14;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // FormTienda
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 450);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.btnConsultar);
-            this.Controls.Add(this.dgvTiendas);
-            this.Controls.Add(this.txtDireccion);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtTelefono);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtNombreTienda);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtIdTienda);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "FormTienda";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Administrar Tiendas";
-            this.Load += new System.EventHandler(this.FormTienda_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTiendas)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(804, 519);
+            Controls.Add(btnActualizar);
+            Controls.Add(btnSalir);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnRegistrar);
+            Controls.Add(btnConsultar);
+            Controls.Add(dgvTiendas);
+            Controls.Add(txtDireccion);
+            Controls.Add(label4);
+            Controls.Add(txtTelefono);
+            Controls.Add(label3);
+            Controls.Add(txtNombreTienda);
+            Controls.Add(label2);
+            Controls.Add(txtIdTienda);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "FormTienda";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Administrar Tiendas";
+            Load += FormTienda_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvTiendas).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -214,6 +242,7 @@
         private System.Windows.Forms.TextBox txtDireccion;
         private System.Windows.Forms.DataGridView dgvTiendas;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnLimpiar;

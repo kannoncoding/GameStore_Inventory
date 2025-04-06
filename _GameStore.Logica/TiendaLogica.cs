@@ -18,105 +18,92 @@ namespace _GameStore.Logica
 {
     public class TiendaLogica
     {
-        // Método para agregar una nueva tienda con validaciones
+        private readonly TiendaDatos datos = new TiendaDatos();
+
         public string AgregarTienda(TiendaEntidad tienda)
         {
-            // Validar que el nombre no esté vacío
             if (string.IsNullOrWhiteSpace(tienda.Nombre))
-            {
                 return "El nombre de la tienda es obligatorio.";
-            }
 
-            // Validar que la dirección no esté vacía
             if (string.IsNullOrWhiteSpace(tienda.Direccion))
-            {
                 return "La dirección de la tienda es obligatoria.";
-            }
 
-            // Validar que el teléfono no esté vacío
             if (string.IsNullOrWhiteSpace(tienda.Telefono))
-            {
                 return "El teléfono de la tienda es obligatorio.";
-            }
 
-            // Validar si el ID ya existe
-            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
-            {
-                if (DatosInventario.tiendas[i].IdTienda == tienda.IdTienda)
-                {
-                    return "Ya existe una tienda registrada con este ID.";
-                }
-            }
+            if (tienda.IdTienda <= 0)
+                return "El ID de la tienda debe ser mayor que cero.";
 
-            // Validar si el Nombre ya existe (sin distinguir mayúsculas y minúsculas)
-            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
-            {
-                if (DatosInventario.tiendas[i].Nombre.Equals(tienda.Nombre, StringComparison.OrdinalIgnoreCase))
-                {
-                    return "Ya existe una tienda con este nombre.";
-                }
-            }
+            // Verificar duplicado por ID
+            var existente = datos.BuscarPorId(tienda.IdTienda);
+            if (existente != null)
+                return "Ya existe una tienda registrada con este ID.";
 
-            // Verificar si hay espacio en el arreglo
-            if (DatosInventario.contadorTiendas < DatosInventario.tiendas.Length)
-            {
-                DatosInventario.tiendas[DatosInventario.contadorTiendas] = tienda;
-                DatosInventario.contadorTiendas++;
-                return "La tienda se ha registrado correctamente.";
-            }
-            else
-            {
-                return "No se pueden ingresar más registros.";
-            }
+            // Verificar duplicado por nombre
+            var todas = datos.ObtenerTodas();
+            if (todas.Any(t => t.Nombre.Equals(tienda.Nombre, StringComparison.OrdinalIgnoreCase)))
+                return "Ya existe una tienda con este nombre.";
+
+            bool exito = datos.Agregar(tienda);
+            return exito
+                ? "La tienda se ha registrado correctamente."
+                : "No se pudo registrar la tienda.";
         }
 
-        // Método para eliminar una tienda por ID
+        public string ActualizarTienda(TiendaEntidad tienda)
+        {
+            if (string.IsNullOrWhiteSpace(tienda.Nombre))
+                return "El nombre de la tienda es obligatorio.";
+
+            if (string.IsNullOrWhiteSpace(tienda.Direccion))
+                return "La dirección de la tienda es obligatoria.";
+
+            if (string.IsNullOrWhiteSpace(tienda.Telefono))
+                return "El teléfono de la tienda es obligatorio.";
+
+            if (tienda.IdTienda <= 0)
+                return "Debe seleccionar una tienda válida para actualizar.";
+
+            var existente = datos.BuscarPorId(tienda.IdTienda);
+            if (existente == null)
+                return "No se encontró una tienda con ese ID.";
+
+            bool exito = datos.Actualizar(tienda);
+            return exito
+                ? "La tienda se ha actualizado correctamente."
+                : "No se pudo actualizar la tienda.";
+        }
+
         public string EliminarTienda(int idTienda)
         {
-            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
-            {
-                if (DatosInventario.tiendas[i].IdTienda == idTienda)
-                {
-                    for (int j = i; j < DatosInventario.contadorTiendas - 1; j++)
-                    {
-                        DatosInventario.tiendas[j] = DatosInventario.tiendas[j + 1];
-                    }
+            if (idTienda <= 0)
+                return "ID inválido para eliminar.";
 
-                    DatosInventario.tiendas[DatosInventario.contadorTiendas - 1] = null;
-                    DatosInventario.contadorTiendas--;
-                    return "La tienda ha sido eliminada correctamente.";
-                }
-            }
-            return "La tienda con el ID especificado no existe.";
+            var existente = datos.BuscarPorId(idTienda);
+            if (existente == null)
+                return "La tienda con el ID especificado no existe.";
+
+            bool exito = datos.Eliminar(idTienda);
+            return exito
+                ? "La tienda ha sido eliminada correctamente."
+                : "No se pudo eliminar la tienda.";
         }
 
-        // Método para buscar tienda por ID
         public TiendaEntidad BuscarTiendaPorId(int idTienda)
         {
-            for (int i = 0; i < DatosInventario.contadorTiendas; i++)
-            {
-                if (DatosInventario.tiendas[i].IdTienda == idTienda)
-                {
-                    return DatosInventario.tiendas[i];
-                }
-            }
-            return null;
+            return datos.BuscarPorId(idTienda);
         }
 
-        // Método para obtener todas las tiendas registradas
-        public TiendaEntidad[] ObtenerTodasTiendas()
+        public List<TiendaEntidad> ObtenerTodasTiendas()
         {
-            TiendaEntidad[] lista = new TiendaEntidad[DatosInventario.contadorTiendas];
-            Array.Copy(DatosInventario.tiendas, lista, DatosInventario.contadorTiendas);
-            return lista;
+            return datos.ObtenerTodas();
         }
 
-        // Método adicional para obtener tiendas por administrador específico
-        public TiendaEntidad[] ObtenerTiendasPorAdministrador(int idAdministrador)
+        public List<TiendaEntidad> ObtenerTiendasPorAdministrador(int idAdministrador)
         {
-            return DatosInventario.tiendas
-                .Where(t => t != null && t.IdAdministrador == idAdministrador)
-                .ToArray();
+            return datos.ObtenerTodas()
+                        .Where(t => t.IdAdministrador == idAdministrador)
+                        .ToList();
         }
     }
 }
