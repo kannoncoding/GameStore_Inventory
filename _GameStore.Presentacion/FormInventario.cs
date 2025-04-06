@@ -42,32 +42,48 @@ namespace _GameStore.Presentacion
             cmbVideojuego.ValueMember = "IdVideojuego";
         }
 
-        private void CargarInventario()
+        private void CargarDataGridInventario()
         {
             try
             {
+                var listaInventario = inventarioLogica.ObtenerTodoInventario();
+                var listaTiendas = tiendaLogica.ObtenerTodasTiendas();
+                var listaVideojuegos = videojuegoLogica.ObtenerTodosVideojuegos();
+
+                var vista = listaInventario.Select(inv =>
+                {
+                    var tienda = listaTiendas.FirstOrDefault(t => t.IdTienda == inv.IdTienda);
+                    var videojuego = listaVideojuegos.FirstOrDefault(v => v.IdVideojuego == inv.IdVideojuego);
+
+                    return new InventarioVista
+                    {
+                        IdTienda = inv.IdTienda,
+                        NombreTienda = tienda?.Nombre ?? "Desconocida",
+                        IdVideojuego = inv.IdVideojuego,
+                        NombreVideojuego = videojuego?.Nombre ?? "Desconocido",
+                        Stock = inv.Stock
+                    };
+                }).ToList();
+
                 dgvInventario.DataSource = null;
-                dgvInventario.AutoGenerateColumns = false;
+                dgvInventario.DataSource = vista;
+
                 dgvInventario.ReadOnly = true;
                 dgvInventario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dgvInventario.Columns.Clear();
 
-                dgvInventario.Columns.Add("IdTienda", "Tienda");
-                dgvInventario.Columns["IdTienda"].DataPropertyName = "IdTienda";
-
-                dgvInventario.Columns.Add("IdVideojuego", "Videojuego");
-                dgvInventario.Columns["IdVideojuego"].DataPropertyName = "IdVideojuego";
-
-                dgvInventario.Columns.Add("Stock", "Stock");
-                dgvInventario.Columns["Stock"].DataPropertyName = "Stock";
-
-                dgvInventario.DataSource = inventarioLogica.ObtenerTodoInventario();
+                // Opcional: establecer títulos personalizados
+                dgvInventario.Columns["IdTienda"].HeaderText = "ID Tienda";
+                dgvInventario.Columns["NombreTienda"].HeaderText = "Nombre Tienda";
+                dgvInventario.Columns["IdVideojuego"].HeaderText = "ID Videojuego";
+                dgvInventario.Columns["NombreVideojuego"].HeaderText = "Nombre Videojuego";
+                dgvInventario.Columns["Stock"].HeaderText = "Cantidad";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar el inventario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void dgvInventario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -107,7 +123,7 @@ namespace _GameStore.Presentacion
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            CargarInventario();
+            CargarDataGridInventario();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -148,7 +164,7 @@ namespace _GameStore.Presentacion
         private void FormInventario_Load(object sender, EventArgs e)
         {
             CargarCombos();
-            CargarInventario();
+            CargarDataGridInventario();
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -179,7 +195,7 @@ namespace _GameStore.Presentacion
 
                 if (mensaje.Contains("actualizado correctamente"))
                 {
-                    CargarInventario();
+                    CargarDataGridInventario();
                     LimpiarCampos();
                 }
             }
