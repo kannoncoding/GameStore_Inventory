@@ -18,100 +18,81 @@ namespace _GameStore.Logica
 {
     public class ClienteLogica
     {
-        // Método para agregar un nuevo cliente con validaciones
+        private readonly ClienteDatos datos = new ClienteDatos();
+
+        // Método para agregar cliente con validaciones
         public string AgregarCliente(ClienteEntidad cliente)
         {
-            for (int i = 0; i < DatosInventario.contadorClientes; i++)
-            {
-                if (DatosInventario.clientes[i].IdCliente == cliente.IdCliente)
-                {
-                    return "Ya existe un cliente registrado con este ID.";
-                }
-                if (DatosInventario.clientes[i].Identificacion == cliente.Identificacion)
-                {
-                    return "Ya existe un cliente registrado con esta identificación.";
-                }
-            }
-
             if (string.IsNullOrWhiteSpace(cliente.Identificacion))
-            {
                 return "La identificación del cliente es obligatoria.";
-            }
 
             if (string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Apellido))
-            {
                 return "El nombre y apellido del cliente son obligatorios.";
-            }
 
             if (string.IsNullOrWhiteSpace(cliente.Correo))
-            {
                 return "El correo electrónico es obligatorio.";
-            }
+
+            // Validar si el ID o la identificación ya existen
+            var existentes = ObtenerTodosClientes();
+
+            if (existentes.Exists(c => c.IdCliente == cliente.IdCliente))
+                return "Ya existe un cliente registrado con este ID.";
+
+            if (existentes.Exists(c => c.Identificacion == cliente.Identificacion))
+                return "Ya existe un cliente registrado con esta identificación.";
 
             cliente.FechaRegistro = DateTime.Now;
 
-            if (DatosInventario.contadorClientes < DatosInventario.clientes.Length)
-            {
-                DatosInventario.clientes[DatosInventario.contadorClientes] = cliente;
-                DatosInventario.contadorClientes++;
-
-              return "El cliente se ha registrado correctamente.";
-            }
-            else
-            {
-                return "No se pueden ingresar más registros.";
-            }
+            bool agregado = datos.Agregar(cliente);
+            return agregado
+                ? "El cliente se ha registrado correctamente."
+                : "No se pudo registrar el cliente.";
         }
 
-
-        // Método para eliminar cliente por ID
+        // Método para eliminar un cliente
         public string EliminarCliente(int idCliente)
         {
-            for (int i = 0; i < DatosInventario.contadorClientes; i++)
-            {
-                if (DatosInventario.clientes[i].IdCliente == idCliente)
-                {
-                    for (int j = i; j < DatosInventario.contadorClientes - 1; j++)
-                    {
-                        DatosInventario.clientes[j] = DatosInventario.clientes[j + 1];
-                    }
-
-                    DatosInventario.clientes[DatosInventario.contadorClientes - 1] = null;
-                    DatosInventario.contadorClientes--;
-                    return "El cliente ha sido eliminado correctamente.";
-                }
-            }
-            return "El cliente con el ID especificado no existe.";
+            bool eliminado = datos.Eliminar(idCliente);
+            return eliminado
+                ? "El cliente ha sido eliminado correctamente."
+                : "No se pudo eliminar el cliente. Verifique que exista.";
         }
 
-        // Método para buscar cliente por ID
+        // Método para actualizar un cliente
+        public string ActualizarCliente(ClienteEntidad cliente)
+        {
+            if (string.IsNullOrWhiteSpace(cliente.Identificacion))
+                return "La identificación es obligatoria.";
+
+            if (string.IsNullOrWhiteSpace(cliente.Nombre) || string.IsNullOrWhiteSpace(cliente.Apellido))
+                return "El nombre y apellido son obligatorios.";
+
+            if (string.IsNullOrWhiteSpace(cliente.Correo))
+                return "El correo electrónico es obligatorio.";
+
+            bool actualizado = datos.Actualizar(cliente);
+            return actualizado
+                ? "El cliente se ha actualizado correctamente."
+                : "No se pudo actualizar el cliente.";
+        }
+
+        // Buscar cliente por ID
         public ClienteEntidad BuscarClientePorId(int idCliente)
         {
-            return DatosInventario.clientes
-                .FirstOrDefault(c => c != null && c.IdCliente == idCliente);
+            return datos.BuscarPorId(idCliente);
         }
 
-        // Método para obtener todos los clientes registrados
-        public ClienteEntidad[] ObtenerTodosClientes()
+        // Obtener todos los clientes registrados
+        public List<ClienteEntidad> ObtenerTodosClientes()
         {
-            if (DatosInventario.contadorClientes == 0)
-            {
-               
-                return new ClienteEntidad[0]; // Retorna un arreglo vacío si no hay clientes
-            }
-
-            ClienteEntidad[] lista = new ClienteEntidad[DatosInventario.contadorClientes];
-            Array.Copy(DatosInventario.clientes, lista, DatosInventario.contadorClientes);
-
-            
-            return lista;
+            return datos.ObtenerTodos();
         }
 
-        // Método adicional para buscar clientes por identificación personal
+        // Buscar por identificación
         public ClienteEntidad BuscarClientePorIdentificacion(string identificacion)
         {
-            return DatosInventario.clientes
-                .FirstOrDefault(c => c != null && c.Identificacion == identificacion);
+            return datos.ObtenerTodos()
+                        .Find(c => c.Identificacion == identificacion);
         }
     }
 }
