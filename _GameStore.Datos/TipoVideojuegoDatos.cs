@@ -114,11 +114,13 @@ namespace _GameStore.Datos
         {
             using (SqlConnection conn = ConexionBD.ObtenerConexion())
             {
-                string sql = "UPDATE TipoVideojuego SET Nombre = @Nombre, Descripcion = @Descripcion WHERE Id = @Id";
+                string sql = "UPDATE TipoVideojuego SET Nombre = @Nombre, Descripcion = @Descripcion WHERE IdTipoVideojuego = @IdTipoVideojuego";
+
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@Nombre", tipo.Nombre);
                 cmd.Parameters.AddWithValue("@Descripcion", tipo.Descripcion);
-                cmd.Parameters.AddWithValue("@Id", tipo.IdTipoVideojuego);
+                cmd.Parameters.AddWithValue("@IdTipoVideojuego", tipo.IdTipoVideojuego);
+
 
                 try
                 {

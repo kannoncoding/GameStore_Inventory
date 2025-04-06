@@ -77,6 +77,39 @@ namespace _GameStore.Presentacion
             }
         }
 
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!int.TryParse(txtCodigoTipo.Text, out int id))
+                {
+                    MessageBox.Show("Por favor, ingrese un ID válido.", "Dato inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                TipoVideojuegoEntidad tipo = new TipoVideojuegoEntidad
+                {
+                    IdTipoVideojuego = id,
+                    Nombre = txtNombreTipo.Text.Trim(),
+                    Descripcion = txtDescripcion.Text.Trim()
+                };
+
+                string mensaje = tipoLogica.ActualizarTipo(tipo);
+                MessageBox.Show(mensaje, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (mensaje.Contains("actualizado correctamente"))
+                {
+                    dgvTiposVideojuego.DataSource = tipoLogica.ObtenerTodosTipos();
+                    LimpiarCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al actualizar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try

@@ -177,6 +177,7 @@
             btnActualizar.TabIndex = 12;
             btnActualizar.Text = "Actualizar";
             btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // FormTipoVideojuego
             // 

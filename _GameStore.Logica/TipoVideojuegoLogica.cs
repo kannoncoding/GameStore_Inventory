@@ -75,6 +75,35 @@ namespace _GameStore.Logica
             return datos.ObtenerTodos();
         }
 
+        // Metodo para actualizar un tipo por seleccion
+        public string ActualizarTipo(TipoVideojuegoEntidad tipo)
+        {
+            if (string.IsNullOrWhiteSpace(tipo.Nombre))
+                return "El nombre no puede estar vacío.";
+
+            if (string.IsNullOrWhiteSpace(tipo.Descripcion))
+                return "La descripción no puede estar vacía.";
+
+            try
+            {
+                TipoVideojuegoDatos datos = new TipoVideojuegoDatos();
+                var existente = datos.BuscarPorId(tipo.IdTipoVideojuego);
+                if (existente == null)
+                {
+                    return "No se encontró un tipo de videojuego con ese ID.";
+                }
+
+                bool exito = datos.Actualizar(tipo);
+                return exito ? "El tipo de videojuego se ha actualizado correctamente." :
+                               "No se pudo actualizar el tipo de videojuego.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar el tipo de videojuego: " + ex.Message;
+            }
+        }
+
+
         // Método para eliminar un Tipo por selección
         public string EliminarTipoPorId(int id)
         {
