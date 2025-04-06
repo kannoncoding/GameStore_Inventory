@@ -29,7 +29,6 @@ namespace _GameStore.Presentacion
         public FormInventario()
         {
             InitializeComponent();
-            CargarCombos();
         }
 
         private void CargarCombos()
@@ -41,6 +40,44 @@ namespace _GameStore.Presentacion
             cmbVideojuego.DataSource = videojuegoLogica.ObtenerTodosVideojuegos();
             cmbVideojuego.DisplayMember = "Nombre";
             cmbVideojuego.ValueMember = "IdVideojuego";
+        }
+
+        private void CargarInventario()
+        {
+            try
+            {
+                dgvInventario.DataSource = null;
+                dgvInventario.AutoGenerateColumns = false;
+                dgvInventario.ReadOnly = true;
+                dgvInventario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvInventario.Columns.Clear();
+
+                dgvInventario.Columns.Add("IdTienda", "Tienda");
+                dgvInventario.Columns["IdTienda"].DataPropertyName = "IdTienda";
+
+                dgvInventario.Columns.Add("IdVideojuego", "Videojuego");
+                dgvInventario.Columns["IdVideojuego"].DataPropertyName = "IdVideojuego";
+
+                dgvInventario.Columns.Add("Stock", "Stock");
+                dgvInventario.Columns["Stock"].DataPropertyName = "Stock";
+
+                dgvInventario.DataSource = inventarioLogica.ObtenerTodoInventario();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el inventario: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvInventario_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = dgvInventario.Rows[e.RowIndex];
+                cmbTienda.SelectedValue = Convert.ToInt32(fila.Cells["IdTienda"].Value);
+                cmbVideojuego.SelectedValue = Convert.ToInt32(fila.Cells["IdVideojuego"].Value);
+                txtCantidad.Text = fila.Cells["Stock"].Value.ToString();
+            }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
@@ -70,14 +107,7 @@ namespace _GameStore.Presentacion
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                dgvInventario.DataSource = inventarioLogica.ObtenerTodoInventario();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al consultar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            CargarInventario();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -117,7 +147,46 @@ namespace _GameStore.Presentacion
 
         private void FormInventario_Load(object sender, EventArgs e)
         {
+            CargarCombos();
+            CargarInventario();
+        }
 
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbTienda.SelectedItem == null || cmbVideojuego.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar una tienda y un videojuego.", "Dato faltante", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!int.TryParse(txtCantidad.Text, out int stock))
+                {
+                    MessageBox.Show("El stock debe ser un número válido.", "Error de Formato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                VideojuegosXTiendaEntidad inventarioActualizado = new VideojuegosXTiendaEntidad
+                {
+                    IdTienda = (int)cmbTienda.SelectedValue,
+                    IdVideojuego = (int)cmbVideojuego.SelectedValue,
+                    Stock = stock
+                };
+
+                string mensaje = inventarioLogica.ActualizarInventario(inventarioActualizado);
+                MessageBox.Show(mensaje, "Actualización", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (mensaje.Contains("actualizado correctamente"))
+                {
+                    CargarInventario();
+                    LimpiarCampos();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

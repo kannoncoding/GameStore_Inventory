@@ -28,170 +28,197 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbTienda = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbVideojuego = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
-            this.dgvInventario = new System.Windows.Forms.DataGridView();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            cmbTienda = new ComboBox();
+            label3 = new Label();
+            cmbVideojuego = new ComboBox();
+            label4 = new Label();
+            txtCantidad = new TextBox();
+            dgvInventario = new DataGridView();
+            btnConsultar = new Button();
+            btnEliminar = new Button();
+            btnRegistrar = new Button();
+            btnLimpiar = new Button();
+            btnSalir = new Button();
+            btnActualizar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Administrar Inventario\n";
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 15);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(125, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Administrar Inventario\n";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Seleccionar la tienda\n";
+            label2.AutoSize = true;
+            label2.Location = new Point(14, 62);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(115, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Seleccionar la tienda\n";
             // 
             // cmbTienda
             // 
-            this.cmbTienda.FormattingEnabled = true;
-            this.cmbTienda.Location = new System.Drawing.Point(13, 71);
-            this.cmbTienda.Name = "cmbTienda";
-            this.cmbTienda.Size = new System.Drawing.Size(188, 21);
-            this.cmbTienda.TabIndex = 2;
+            cmbTienda.FormattingEnabled = true;
+            cmbTienda.Location = new Point(15, 82);
+            cmbTienda.Margin = new Padding(4, 3, 4, 3);
+            cmbTienda.Name = "cmbTienda";
+            cmbTienda.Size = new Size(219, 23);
+            cmbTienda.TabIndex = 2;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(208, 54);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Seleccionar el videojuego\n";
+            label3.AutoSize = true;
+            label3.Location = new Point(243, 62);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(141, 15);
+            label3.TabIndex = 3;
+            label3.Text = "Seleccionar el videojuego\n";
             // 
             // cmbVideojuego
             // 
-            this.cmbVideojuego.FormattingEnabled = true;
-            this.cmbVideojuego.Location = new System.Drawing.Point(208, 71);
-            this.cmbVideojuego.Name = "cmbVideojuego";
-            this.cmbVideojuego.Size = new System.Drawing.Size(265, 21);
-            this.cmbVideojuego.TabIndex = 4;
+            cmbVideojuego.FormattingEnabled = true;
+            cmbVideojuego.Location = new Point(243, 82);
+            cmbVideojuego.Margin = new Padding(4, 3, 4, 3);
+            cmbVideojuego.Name = "cmbVideojuego";
+            cmbVideojuego.Size = new Size(308, 23);
+            cmbVideojuego.TabIndex = 4;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(480, 54);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Cantidad";
+            label4.AutoSize = true;
+            label4.Location = new Point(560, 62);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(55, 15);
+            label4.TabIndex = 5;
+            label4.Text = "Cantidad";
             // 
             // txtCantidad
             // 
-            this.txtCantidad.Location = new System.Drawing.Point(483, 71);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(85, 20);
-            this.txtCantidad.TabIndex = 6;
+            txtCantidad.Location = new Point(564, 82);
+            txtCantidad.Margin = new Padding(4, 3, 4, 3);
+            txtCantidad.Name = "txtCantidad";
+            txtCantidad.Size = new Size(98, 23);
+            txtCantidad.TabIndex = 6;
             // 
             // dgvInventario
             // 
-            this.dgvInventario.AllowUserToAddRows = false;
-            this.dgvInventario.AllowUserToDeleteRows = false;
-            this.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventario.Location = new System.Drawing.Point(12, 98);
-            this.dgvInventario.Name = "dgvInventario";
-            this.dgvInventario.ReadOnly = true;
-            this.dgvInventario.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInventario.Size = new System.Drawing.Size(556, 241);
-            this.dgvInventario.TabIndex = 7;
+            dgvInventario.AllowUserToAddRows = false;
+            dgvInventario.AllowUserToDeleteRows = false;
+            dgvInventario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInventario.Location = new Point(14, 113);
+            dgvInventario.Margin = new Padding(4, 3, 4, 3);
+            dgvInventario.Name = "dgvInventario";
+            dgvInventario.ReadOnly = true;
+            dgvInventario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvInventario.Size = new Size(649, 278);
+            dgvInventario.TabIndex = 7;
+            dgvInventario.CellDoubleClick += dgvInventario_CellDoubleClick;
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(12, 345);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 8;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            btnConsultar.Location = new Point(14, 398);
+            btnConsultar.Margin = new Padding(4, 3, 4, 3);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(88, 27);
+            btnConsultar.TabIndex = 8;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(493, 345);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
-            this.btnEliminar.TabIndex = 9;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            btnEliminar.Location = new Point(290, 479);
+            btnEliminar.Margin = new Padding(4, 3, 4, 3);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(88, 27);
+            btnEliminar.TabIndex = 9;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(249, 345);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 10;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            btnRegistrar.Location = new Point(575, 398);
+            btnRegistrar.Margin = new Padding(4, 3, 4, 3);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(88, 27);
+            btnRegistrar.TabIndex = 10;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 415);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 11;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            btnLimpiar.Location = new Point(14, 479);
+            btnLimpiar.Margin = new Padding(4, 3, 4, 3);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(88, 27);
+            btnLimpiar.TabIndex = 11;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(493, 415);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 12;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            btnSalir.Location = new Point(575, 479);
+            btnSalir.Margin = new Padding(4, 3, 4, 3);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(88, 27);
+            btnSalir.TabIndex = 12;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.Location = new Point(290, 402);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(88, 23);
+            btnActualizar.TabIndex = 13;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
             // 
             // FormInventario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 450);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnConsultar);
-            this.Controls.Add(this.dgvInventario);
-            this.Controls.Add(this.txtCantidad);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbVideojuego);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cmbTienda);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "FormInventario";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Administrar Inventario\n";
-            this.Load += new System.EventHandler(this.FormInventario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(677, 519);
+            Controls.Add(btnActualizar);
+            Controls.Add(btnSalir);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnRegistrar);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnConsultar);
+            Controls.Add(dgvInventario);
+            Controls.Add(txtCantidad);
+            Controls.Add(label4);
+            Controls.Add(cmbVideojuego);
+            Controls.Add(label3);
+            Controls.Add(cmbTienda);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "FormInventario";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Administrar Inventario\n";
+            Load += FormInventario_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvInventario).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -210,5 +237,6 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;
+        private Button btnActualizar;
     }
 }

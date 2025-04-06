@@ -18,93 +18,63 @@ namespace _GameStore.Logica
 {
     public class VideojuegosXTiendaLogica
     {
+        private readonly VideojuegosXTiendaDatos datos = new VideojuegosXTiendaDatos();
+
         // Método para agregar inventario con validaciones
         public string AgregarInventario(VideojuegosXTiendaEntidad inventario)
         {
-            for (int i = 0; i < DatosInventario.contadorInventario; i++)
-            {
-                if (DatosInventario.inventario[i].IdTienda == inventario.IdTienda &&
-                    DatosInventario.inventario[i].IdVideojuego == inventario.IdVideojuego)
-                {
-                    return "Ya existe un registro de inventario para este videojuego en esta tienda.";
-                }
-            }
-
-            bool tiendaExiste = DatosInventario.tiendas
-                .Any(t => t != null && t.IdTienda == inventario.IdTienda);
-
-            if (!tiendaExiste)
-            {
-                return "La tienda especificada no existe.";
-            }
-
-            bool videojuegoExiste = DatosInventario.videojuegos
-                .Any(v => v != null && v.IdVideojuego == inventario.IdVideojuego);
-
-            if (!videojuegoExiste)
-            {
-                return "El videojuego especificado no existe.";
-            }
-
             if (inventario.Stock < 0)
             {
                 return "El stock no puede ser negativo.";
             }
 
-            if (DatosInventario.contadorInventario < DatosInventario.inventario.Length)
+            var existente = datos.BuscarPorId(inventario.IdTienda, inventario.IdVideojuego);
+            if (existente != null)
             {
-                DatosInventario.inventario[DatosInventario.contadorInventario] = inventario;
-                DatosInventario.contadorInventario++;
-                return "El inventario se ha registrado correctamente.";
+                return "Ya existe un registro de inventario para este videojuego en esta tienda.";
             }
-            else
-            {
-                return "No se pueden ingresar más registros.";
-            }
+
+            bool agregado = datos.Agregar(inventario);
+            return agregado ? "El inventario se ha registrado correctamente." : "No se pudo registrar el inventario.";
         }
 
         // Método para eliminar un registro del inventario por tienda y videojuego
         public string EliminarVideojuegoXTienda(int idTienda, int idVideojuego)
         {
-            for (int i = 0; i < DatosInventario.contadorInventario; i++)
-            {
-                if (DatosInventario.inventario[i].IdTienda == idTienda &&
-                    DatosInventario.inventario[i].IdVideojuego == idVideojuego)
-                {
-                    for (int j = i; j < DatosInventario.contadorInventario - 1; j++)
-                    {
-                        DatosInventario.inventario[j] = DatosInventario.inventario[j + 1];
-                    }
-
-                    DatosInventario.inventario[DatosInventario.contadorInventario - 1] = null;
-                    DatosInventario.contadorInventario--;
-                    return "El registro del inventario ha sido eliminado correctamente.";
-                }
-            }
-            return "El inventario especificado no existe.";
+            bool eliminado = datos.Eliminar(idTienda, idVideojuego);
+            return eliminado ? "El registro del inventario ha sido eliminado correctamente." : "El inventario especificado no existe.";
         }
 
         // Método para buscar un inventario específico por tienda y videojuego
         public VideojuegosXTiendaEntidad BuscarInventario(int idTienda, int idVideojuego)
         {
-            return DatosInventario.inventario
-                .FirstOrDefault(i => i != null && i.IdTienda == idTienda && i.IdVideojuego == idVideojuego);
+            return datos.BuscarPorId(idTienda, idVideojuego);
         }
 
         // Método para obtener todo el inventario registrado
-        public VideojuegosXTiendaEntidad[] ObtenerTodoInventario()
+        public List<VideojuegosXTiendaEntidad> ObtenerTodoInventario()
         {
-            VideojuegosXTiendaEntidad[] lista = new VideojuegosXTiendaEntidad[DatosInventario.contadorInventario];
-            Array.Copy(DatosInventario.inventario, lista, DatosInventario.contadorInventario);
-            return lista;
+            return datos.ObtenerTodos();
         }
 
         // Método adicional para obtener el inventario específico de una tienda
-        public VideojuegosXTiendaEntidad[] ObtenerInventarioPorTienda(int idTienda)
+        public List<VideojuegosXTiendaEntidad> ObtenerInventarioPorTienda(int idTienda)
         {
-            return DatosInventario.inventario
-                .Where(i => i != null && i.IdTienda == idTienda)
-                .ToArray();
+            return datos.ObtenerTodos()
+                        .Where(i => i.IdTienda == idTienda)
+                        .ToList();
+        }
+
+        // Método para actualizar stock
+        public string ActualizarInventario(VideojuegosXTiendaEntidad inventario)
+        {
+            if (inventario.Stock < 0)
+            {
+                return "El stock no puede ser negativo.";
+            }
+
+            bool actualizado = datos.Actualizar(inventario);
+            return actualizado ? "El inventario se ha actualizado correctamente." : "No se pudo actualizar el inventario.";
         }
     }
 }
