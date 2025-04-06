@@ -28,230 +28,274 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtIdVideojuego = new System.Windows.Forms.TextBox();
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbTipoVideojuego = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtPlataforma = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPrecio = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnConsultar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
-            this.dgvVideojuegos = new System.Windows.Forms.DataGridView();
-            this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.cmbClasificacionEdad = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtDescripcion = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVideojuegos)).BeginInit();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            txtIdVideojuego = new TextBox();
+            txtNombre = new TextBox();
+            label3 = new Label();
+            cmbTipoVideojuego = new ComboBox();
+            label4 = new Label();
+            txtPlataforma = new TextBox();
+            label5 = new Label();
+            txtPrecio = new TextBox();
+            label6 = new Label();
+            btnConsultar = new Button();
+            btnRegistrar = new Button();
+            dgvVideojuegos = new DataGridView();
+            btnLimpiar = new Button();
+            btnSalir = new Button();
+            cmbClasificacionEdad = new ComboBox();
+            label7 = new Label();
+            txtDescripcion = new TextBox();
+            btnActualizar = new Button();
+            btnEliminar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvVideojuegos).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Código del Videojuego";
+            label1.AutoSize = true;
+            label1.Location = new Point(14, 10);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(128, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Código del Videojuego";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(184, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(117, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Nombre del Videojuego";
+            label2.AutoSize = true;
+            label2.Location = new Point(215, 10);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(133, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Nombre del Videojuego";
             // 
             // txtIdVideojuego
             // 
-            this.txtIdVideojuego.Location = new System.Drawing.Point(15, 25);
-            this.txtIdVideojuego.Name = "txtIdVideojuego";
-            this.txtIdVideojuego.Size = new System.Drawing.Size(163, 20);
-            this.txtIdVideojuego.TabIndex = 2;
+            txtIdVideojuego.Location = new Point(18, 29);
+            txtIdVideojuego.Margin = new Padding(4, 3, 4, 3);
+            txtIdVideojuego.Name = "txtIdVideojuego";
+            txtIdVideojuego.Size = new Size(190, 23);
+            txtIdVideojuego.TabIndex = 2;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(184, 24);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(408, 20);
-            this.txtNombre.TabIndex = 3;
-            this.txtNombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            txtNombre.Location = new Point(215, 28);
+            txtNombre.Margin = new Padding(4, 3, 4, 3);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(475, 23);
+            txtNombre.TabIndex = 3;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(689, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tipo de Videojuego";
+            label3.AutoSize = true;
+            label3.Location = new Point(804, 10);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(110, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Tipo de Videojuego";
             // 
             // cmbTipoVideojuego
             // 
-            this.cmbTipoVideojuego.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbTipoVideojuego.FormattingEnabled = true;
-            this.cmbTipoVideojuego.Location = new System.Drawing.Point(598, 23);
-            this.cmbTipoVideojuego.Name = "cmbTipoVideojuego";
-            this.cmbTipoVideojuego.Size = new System.Drawing.Size(189, 21);
-            this.cmbTipoVideojuego.TabIndex = 5;
+            cmbTipoVideojuego.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTipoVideojuego.FormattingEnabled = true;
+            cmbTipoVideojuego.Location = new Point(698, 27);
+            cmbTipoVideojuego.Margin = new Padding(4, 3, 4, 3);
+            cmbTipoVideojuego.Name = "cmbTipoVideojuego";
+            cmbTipoVideojuego.Size = new Size(220, 23);
+            cmbTipoVideojuego.TabIndex = 5;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(57, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Plataforma";
+            label4.AutoSize = true;
+            label4.Location = new Point(15, 60);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(65, 15);
+            label4.TabIndex = 6;
+            label4.Text = "Plataforma";
             // 
             // txtPlataforma
             // 
-            this.txtPlataforma.Location = new System.Drawing.Point(15, 69);
-            this.txtPlataforma.Name = "txtPlataforma";
-            this.txtPlataforma.Size = new System.Drawing.Size(163, 20);
-            this.txtPlataforma.TabIndex = 7;
+            txtPlataforma.Location = new Point(18, 80);
+            txtPlataforma.Margin = new Padding(4, 3, 4, 3);
+            txtPlataforma.Name = "txtPlataforma";
+            txtPlataforma.Size = new Size(190, 23);
+            txtPlataforma.TabIndex = 7;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 92);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Precio";
+            label5.AutoSize = true;
+            label5.Location = new Point(14, 106);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(40, 15);
+            label5.TabIndex = 8;
+            label5.Text = "Precio";
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(13, 108);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(199, 20);
-            this.txtPrecio.TabIndex = 9;
+            txtPrecio.Location = new Point(15, 125);
+            txtPrecio.Margin = new Padding(4, 3, 4, 3);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.Size = new Size(231, 23);
+            txtPrecio.TabIndex = 9;
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(673, 52);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Clasificacion por Edad";
+            label6.AutoSize = true;
+            label6.Location = new Point(785, 60);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(124, 15);
+            label6.TabIndex = 10;
+            label6.Text = "Clasificacion por Edad";
             // 
             // btnConsultar
             // 
-            this.btnConsultar.Location = new System.Drawing.Point(12, 142);
-            this.btnConsultar.Name = "btnConsultar";
-            this.btnConsultar.Size = new System.Drawing.Size(75, 23);
-            this.btnConsultar.TabIndex = 12;
-            this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
-            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            btnConsultar.Location = new Point(14, 164);
+            btnConsultar.Margin = new Padding(4, 3, 4, 3);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(88, 27);
+            btnConsultar.TabIndex = 12;
+            btnConsultar.Text = "Consultar";
+            btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(713, 142);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(75, 23);
-            this.btnRegistrar.TabIndex = 13;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = true;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            btnRegistrar.Location = new Point(832, 164);
+            btnRegistrar.Margin = new Padding(4, 3, 4, 3);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(88, 27);
+            btnRegistrar.TabIndex = 13;
+            btnRegistrar.Text = "Registrar";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
             // 
             // dgvVideojuegos
             // 
-            this.dgvVideojuegos.AllowUserToAddRows = false;
-            this.dgvVideojuegos.AllowUserToDeleteRows = false;
-            this.dgvVideojuegos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVideojuegos.Location = new System.Drawing.Point(13, 171);
-            this.dgvVideojuegos.Name = "dgvVideojuegos";
-            this.dgvVideojuegos.ReadOnly = true;
-            this.dgvVideojuegos.Size = new System.Drawing.Size(773, 316);
-            this.dgvVideojuegos.TabIndex = 14;
+            dgvVideojuegos.AllowUserToAddRows = false;
+            dgvVideojuegos.AllowUserToDeleteRows = false;
+            dgvVideojuegos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvVideojuegos.Location = new Point(15, 197);
+            dgvVideojuegos.Margin = new Padding(4, 3, 4, 3);
+            dgvVideojuegos.Name = "dgvVideojuegos";
+            dgvVideojuegos.ReadOnly = true;
+            dgvVideojuegos.Size = new Size(902, 365);
+            dgvVideojuegos.TabIndex = 14;
+            dgvVideojuegos.CellDoubleClick += dgvVideojuegos_CellDoubleClick;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(13, 532);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 15;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            btnLimpiar.Location = new Point(15, 614);
+            btnLimpiar.Margin = new Padding(4, 3, 4, 3);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(88, 27);
+            btnLimpiar.TabIndex = 15;
+            btnLimpiar.Text = "Limpiar";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(712, 531);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 16;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            btnSalir.Location = new Point(831, 613);
+            btnSalir.Margin = new Padding(4, 3, 4, 3);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(88, 27);
+            btnSalir.TabIndex = 16;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // cmbClasificacionEdad
             // 
-            this.cmbClasificacionEdad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbClasificacionEdad.FormattingEnabled = true;
-            this.cmbClasificacionEdad.Location = new System.Drawing.Point(663, 67);
-            this.cmbClasificacionEdad.Name = "cmbClasificacionEdad";
-            this.cmbClasificacionEdad.Size = new System.Drawing.Size(121, 21);
-            this.cmbClasificacionEdad.TabIndex = 17;
+            cmbClasificacionEdad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbClasificacionEdad.FormattingEnabled = true;
+            cmbClasificacionEdad.Location = new Point(774, 77);
+            cmbClasificacionEdad.Margin = new Padding(4, 3, 4, 3);
+            cmbClasificacionEdad.Name = "cmbClasificacionEdad";
+            cmbClasificacionEdad.Size = new Size(140, 23);
+            cmbClasificacionEdad.TabIndex = 17;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(218, 52);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Descripcion";
+            label7.AutoSize = true;
+            label7.Location = new Point(254, 60);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(69, 15);
+            label7.TabIndex = 18;
+            label7.Text = "Descripcion";
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(221, 67);
-            this.txtDescripcion.Multiline = true;
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(436, 61);
-            this.txtDescripcion.TabIndex = 19;
+            txtDescripcion.Location = new Point(258, 77);
+            txtDescripcion.Margin = new Padding(4, 3, 4, 3);
+            txtDescripcion.Multiline = true;
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new Size(508, 70);
+            txtDescripcion.TabIndex = 19;
+            // 
+            // btnActualizar
+            // 
+            btnActualizar.Location = new Point(403, 164);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(75, 23);
+            btnActualizar.TabIndex = 20;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(403, 613);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.TabIndex = 21;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // FormVideojuego
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 567);
-            this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.cmbClasificacionEdad);
-            this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnLimpiar);
-            this.Controls.Add(this.dgvVideojuegos);
-            this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.btnConsultar);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtPrecio);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtPlataforma);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cmbTipoVideojuego);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtNombre);
-            this.Controls.Add(this.txtIdVideojuego);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.Name = "FormVideojuego";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Administrar Videojuegos";
-            this.Load += new System.EventHandler(this.FormVideojuego_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVideojuegos)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(933, 654);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnActualizar);
+            Controls.Add(txtDescripcion);
+            Controls.Add(label7);
+            Controls.Add(cmbClasificacionEdad);
+            Controls.Add(btnSalir);
+            Controls.Add(btnLimpiar);
+            Controls.Add(dgvVideojuegos);
+            Controls.Add(btnRegistrar);
+            Controls.Add(btnConsultar);
+            Controls.Add(label6);
+            Controls.Add(txtPrecio);
+            Controls.Add(label5);
+            Controls.Add(txtPlataforma);
+            Controls.Add(label4);
+            Controls.Add(cmbTipoVideojuego);
+            Controls.Add(label3);
+            Controls.Add(txtNombre);
+            Controls.Add(txtIdVideojuego);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(4, 3, 4, 3);
+            MaximizeBox = false;
+            Name = "FormVideojuego";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Administrar Videojuegos";
+            Load += FormVideojuego_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvVideojuegos).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -270,6 +314,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnConsultar;
         private System.Windows.Forms.Button btnRegistrar;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.DataGridView dgvVideojuegos;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnSalir;

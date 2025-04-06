@@ -18,107 +18,126 @@ namespace _GameStore.Logica
 {
     public class VideojuegoLogica
     {
-        // Método para agregar un nuevo videojuego con validaciones
         public string AgregarVideojuego(VideojuegoEntidad videojuego)
         {
-            // Validar que el nombre no esté vacío
             if (string.IsNullOrWhiteSpace(videojuego.Nombre))
-            {
                 return "El nombre del videojuego no puede estar vacío.";
-            }
 
-            // Validar que el precio sea mayor a cero
             if (videojuego.Precio <= 0)
-            {
                 return "El precio debe ser mayor que cero.";
-            }
 
-            // Validar que la plataforma no esté vacía
             if (string.IsNullOrWhiteSpace(videojuego.Plataforma))
-            {
                 return "Debe especificar la plataforma del videojuego.";
-            }
 
-            // Validar que la clasificación por edad no esté vacía
             if (string.IsNullOrWhiteSpace(videojuego.ClasificacionEdad))
-            {
                 return "Debe indicar la clasificación por edad del videojuego.";
-            }
 
-            // Validar si el ID ya existe
-            for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
+            try
             {
-                if (DatosInventario.videojuegos[i].IdVideojuego == videojuego.IdVideojuego)
-                {
+                VideojuegoDatos datos = new VideojuegoDatos();
+
+                // Verificar si ya existe un videojuego con ese ID
+                var existente = datos.BuscarPorId(videojuego.IdVideojuego);
+                if (existente != null)
                     return "Ya existe un videojuego registrado con este ID.";
-                }
-            }
 
-            // Validar si el Nombre ya existe (sin distinguir mayúsculas y minúsculas)
-            for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
-            {
-                if (DatosInventario.videojuegos[i].Nombre.Equals(videojuego.Nombre, StringComparison.OrdinalIgnoreCase))
-                {
+                // Verificar si ya existe un videojuego con ese nombre (sin importar mayúsculas/minúsculas)
+                var lista = datos.ObtenerTodos();
+                if (lista.Any(v => v.Nombre.Equals(videojuego.Nombre, StringComparison.OrdinalIgnoreCase)))
                     return "Ya existe un videojuego con este nombre.";
-                }
-            }
 
-            // Validar existencia del tipo de videojuego
-            bool tipoExiste = false;
-            for (int i = 0; i < DatosInventario.contadorTiposVideojuegos; i++)
-            {
-                if (DatosInventario.tiposVideojuegos[i].IdTipoVideojuego == videojuego.IdTipoVideojuego)
-                {
-                    tipoExiste = true;
-                    break;
-                }
-            }
-            if (!tipoExiste)
-            {
-                return "El tipo de videojuego seleccionado no existe.";
-            }
+                // Validar existencia de TipoVideojuego en la base de datos
+                TipoVideojuegoDatos tipoDatos = new TipoVideojuegoDatos();
+                var tipo = tipoDatos.BuscarPorId(videojuego.IdTipoVideojuego);
+                if (tipo == null)
+                    return "El tipo de videojuego seleccionado no existe.";
 
-            // Verificar si hay espacio en el arreglo
-            if (DatosInventario.contadorVideojuegos < DatosInventario.videojuegos.Length)
-            {
-                DatosInventario.videojuegos[DatosInventario.contadorVideojuegos] = videojuego;
-                DatosInventario.contadorVideojuegos++;
-                return "El videojuego se ha registrado correctamente.";
+                bool exito = datos.Agregar(videojuego);
+                return exito
+                    ? "El videojuego se ha registrado correctamente."
+                    : "No se pudo registrar el videojuego.";
             }
-            else
+            catch (Exception ex)
             {
-                return "No se pueden ingresar más registros.";
+                return "Error al registrar el videojuego: " + ex.Message;
             }
         }
 
+        public string ActualizarVideojuego(VideojuegoEntidad videojuego)
+        {
+            if (string.IsNullOrWhiteSpace(videojuego.Nombre))
+                return "El nombre del videojuego no puede estar vacío.";
 
-        // Método para buscar videojuego por ID
+            if (videojuego.Precio <= 0)
+                return "El precio debe ser mayor que cero.";
+
+            if (string.IsNullOrWhiteSpace(videojuego.Plataforma))
+                return "Debe especificar la plataforma del videojuego.";
+
+            if (string.IsNullOrWhiteSpace(videojuego.ClasificacionEdad))
+                return "Debe indicar la clasificación por edad del videojuego.";
+
+            try
+            {
+                VideojuegoDatos datos = new VideojuegoDatos();
+                var existente = datos.BuscarPorId(videojuego.IdVideojuego);
+                if (existente == null)
+                    return "No se encontró el videojuego con ese ID.";
+
+                // También podrías validar existencia de tipo si lo deseas
+                TipoVideojuegoDatos tipoDatos = new TipoVideojuegoDatos();
+                var tipo = tipoDatos.BuscarPorId(videojuego.IdTipoVideojuego);
+                if (tipo == null)
+                    return "El tipo de videojuego seleccionado no existe.";
+
+                bool exito = datos.Actualizar(videojuego);
+                return exito
+                    ? "El videojuego se ha actualizado correctamente."
+                    : "No se pudo actualizar el videojuego.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar el videojuego: " + ex.Message;
+            }
+        }
+
+        public string EliminarVideojuegoPorId(int id)
+        {
+            try
+            {
+                VideojuegoDatos datos = new VideojuegoDatos();
+                var existente = datos.BuscarPorId(id);
+                if (existente == null)
+                    return "No se encontró un videojuego con ese ID.";
+
+                bool exito = datos.Eliminar(id);
+                return exito
+                    ? "El videojuego se ha eliminado correctamente."
+                    : "No se pudo eliminar el videojuego.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al eliminar el videojuego: " + ex.Message;
+            }
+        }
+
         public VideojuegoEntidad BuscarVideojuegoPorId(int id)
         {
-            for (int i = 0; i < DatosInventario.contadorVideojuegos; i++)
-            {
-                if (DatosInventario.videojuegos[i].IdVideojuego == id)
-                    return DatosInventario.videojuegos[i];
-            }
-            return null;
-        } 
-
-        // Método para obtener todos los videojuegos registrados
-        public VideojuegoEntidad[] ObtenerTodosVideojuegos()
-        {
-            VideojuegoEntidad[] lista = new VideojuegoEntidad[DatosInventario.contadorVideojuegos];
-            Array.Copy(DatosInventario.videojuegos, lista, DatosInventario.contadorVideojuegos);
-            return lista;
+            VideojuegoDatos datos = new VideojuegoDatos();
+            return datos.BuscarPorId(id);
         }
 
-        // Método adicional para obtener videojuegos por tipo específico
-        public VideojuegoEntidad[] ObtenerVideojuegosPorTipo(int idTipo)
+        public List<VideojuegoEntidad> ObtenerTodosVideojuegos()
         {
-            VideojuegoEntidad[] resultado = DatosInventario.videojuegos
-                .Where(v => v != null && v.IdTipoVideojuego == idTipo)
-                .ToArray();
+            VideojuegoDatos datos = new VideojuegoDatos();
+            return datos.ObtenerTodos();
+        }
 
-            return resultado;
+        public List<VideojuegoEntidad> ObtenerVideojuegosPorTipo(int idTipo)
+        {
+            VideojuegoDatos datos = new VideojuegoDatos();
+            var todos = datos.ObtenerTodos();
+            return todos.Where(v => v.IdTipoVideojuego == idTipo).ToList();
         }
     }
 }

@@ -13,7 +13,6 @@ using _GameStore.Entidades;
 // Jorge Luis Arias Melendez
 // 1er Cuatrimestre
 // Descripción: Clase de acceso a datos para el manejo de los tipos de videojuegos (CRUD)
-// Fecha: 2025
 
 namespace _GameStore.Datos
 {
